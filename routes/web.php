@@ -73,3 +73,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 // Route::resource('/admin/place', 'Admin\\PlaceController');
+

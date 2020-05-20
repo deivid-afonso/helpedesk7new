@@ -39,8 +39,12 @@ class DeviceController extends Controller
        //dd($data);
        //$device = $this->device->find('id')->all();
        //dd($device);
-       $device->store()->create($data);
-       dd($device);
+       $device = new Device;
+       $device->place_id = 2; // esse valor deve vir de algum select depois ... nao se esqueca
+       $device->description = $data['description'];
+       $device->patrimony = $data['patrimony'];
+       $device->save();
+    
        flash('Equipamento cadastrado com sucesso')->success();
        return redirect()->route('devices.index');
 
@@ -54,8 +58,9 @@ class DeviceController extends Controller
 
    public function edit($id)
    {
+
       $device = $this->device->find($id);
-      return view('admin.devices.edit', compact('devices'));
+      return view('admin.devices.edit', compact('device'));
    }
 
    public function update(Request $request, $id)

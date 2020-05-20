@@ -35,16 +35,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
  
 
-Route::prefix('admin')->namespace('Admin')->group(function(){
-    Route::prefix('users')->group(function(){
-        Route::get('/', 'UserController@index');
-        Route::get('/create', 'UserController@create');
-        Route::post('/store', 'UserController@store');
-        Route::get('/{user}/edit', 'UserController@edit');
-        Route::post('/update{user}', 'UserController@update');
+// Route::prefix('admin')->namespace('Admin')->group(function(){
+//     Route::prefix('users')->group(function(){
+//         Route::get('/', 'UserController@index')->name('admin.users.index');
+//         Route::get('/create', 'UserController@create')->name('admin.users.create');
+//         Route::post('/store', 'UserController@store')->name('admin.users.store');
+//         Route::get('/{user}/edit', 'UserController@edit')->name('admin.users.edit');
+//         Route::post('/update{user}', 'UserController@update')->name('admin.users.update');
+//         Route::post('/destroy{user}', 'UserController@destroy')->name('admin.users.destroy');
+
         
-    });
-});
+//     });
+// });
    
 
 
@@ -60,11 +62,11 @@ Route::prefix('admin')->namespace('Admin')->group(function(){
 //  Route::get('/admin/occurrencestype/create', 'Admin\\OccurrenceTypeController@create');
 //  Route::post('/admin/occurrencestype/store', 'Admin\\OccurrenceTypeController@store');
 
-// Route::resource('/admin/user', 'Admin\\UserController');
+ Route::resource('/admin/users', 'Admin\\UserController');
 
 // Route::resource('/admin/occurrence', 'Admin\\OcurrenceController');
 
-// Route::resource('/admin/device', 'Admin\\DeviceController');
+ Route::resource('/admin/devices', 'Admin\\DeviceController');
 
 
 // Route::resource('/admin/occurrenceType', 'Admin\\OccurrenceTypeController');

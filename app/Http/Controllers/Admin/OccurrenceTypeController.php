@@ -4,18 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use OccurrenceType;
 
 class OccurrenceTypeController extends Controller
 {
     public function index()
     {
-      // $users = $this->repository->all();
+      //$occurrencesType = $this->occurrencesType->paginate(10);
+      //dd($occurrencesType);
+     // return view('admin.occurrencesType.index', compact('occurrencesType'));
 
-        //return view('user.index', [
-          //  'users' => $users
-        //]);
-
-        $ot = \App\OcurrenceType::paginate(10);
+        $occurrencesType = \App\OccurrenceType::paginate(10);
         return view('admin.occurrencestype.index', compact('occurrencestype'));
     }
 

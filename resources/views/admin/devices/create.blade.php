@@ -16,14 +16,16 @@
         </div>
 
         {{-- esse foreach ta com erro --}}
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label>Laboratório</label>
             <select name="place_id" class="form-control">
                 @foreach ($places as $place)
-                     <option value="{{'$place->id'}}">{{$place->description}}</option>
+                
+                     <option value="{{$place->id}}">{{$place->description}}</option>
+                  
                 @endforeach
             </select>    
-        </div> --}}
+        </div>
         
         
         

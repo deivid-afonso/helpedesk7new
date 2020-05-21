@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('admin.users.create')}}" class="btn btn-lg btn-success">Criar User</a>
+<a href="{{route('users.index')}}" class="btn btn-lg btn-success">Criar User</a>
 <table class="table table-striped">
     <thead>
         <tr>

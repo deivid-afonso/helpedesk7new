@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OcurrenceType extends Model
+class OccurrenceType extends Model
 {
     protected $fillable = ['description'];
 }

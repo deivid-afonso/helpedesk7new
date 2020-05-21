@@ -64,13 +64,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 
  Route::resource('/admin/users', 'Admin\\UserController');
 
-// Route::resource('/admin/occurrence', 'Admin\\OcurrenceController');
+ Route::resource('/admin/occurrences', 'Admin\\OcurrenceController');
 
  Route::resource('/admin/devices', 'Admin\\DeviceController');
 
+ Route::resource('/admin/places', 'Admin\\PlaceController');
 
-// Route::resource('/admin/occurrenceType', 'Admin\\OccurrenceTypeController');
-
-
-// Route::resource('/admin/place', 'Admin\\PlaceController');
+ Route::resource('/admin/occurrencesType', 'Admin\\OccurrenceTypeController')->name('occurrences_type');
 

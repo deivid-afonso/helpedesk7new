@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Criar User</h1>
-<form action="{{route('admin.users.store')}}" method="POST">
+<form action="{{route('users.store')}}" method="POST">
         {{-- pra gragar usar metodo store conforme acima --}}
         <input type="hidden" name="_token" value={{csrf_token()}}>
         <div class="form-group">

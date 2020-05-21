@@ -13,13 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 //Route::resource('Place', 'LabsController');
 
@@ -62,13 +56,26 @@ Route::get('/home', 'HomeController@index')->name('home');
 //  Route::get('/admin/occurrencestype/create', 'Admin\\OccurrenceTypeController@create');
 //  Route::post('/admin/occurrencestype/store', 'Admin\\OccurrenceTypeController@store');
 
- Route::resource('/admin/users', 'Admin\\UserController');
 
- Route::resource('/admin/occurrences', 'Admin\\OcurrenceController');
+ Route::get('/', function () {
+    return view('welcome');
+});
 
- Route::resource('/admin/devices', 'Admin\\DeviceController');
+Auth::routes();
 
- Route::resource('/admin/places', 'Admin\\PlaceController');
+Route::get('/home', 'HomeController@index')->name('home');
 
- Route::resource('/admin/occurrencesType', 'Admin\\OccurrenceTypeController')->name('occurrences_type');
+Route::group(['middleware'=> ['auth']], function()
+{
+    Route::resource('/admin/users', 'Admin\\UserController');
 
+    Route::resource('/admin/occurrences', 'Admin\\OcurrenceController');
+   
+    Route::resource('/admin/devices', 'Admin\\DeviceController');
+   
+    Route::resource('/admin/places', 'Admin\\PlaceController');
+   
+    Route::resource('/admin/occurrencesType', 'Admin\\OccurrenceTypeController');
+    obvio que vem null ele ta esperando um post e nao um get to usando o put
+    
+});

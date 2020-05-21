@@ -2,12 +2,11 @@
 
 @section('content')
     <h1>Atualizar User</h1>
-    <form action="{{route('users.update', ['user=>$user->id'])}}" method="POST">
+    <form action="{{route('users.update', $user->id)}}" method="POST">
         {{-- pra gragar usar metodo store conforme acima --}}
-        <input type="hidden" name="_token" value={{csrf_token()}}>
-        <input type="hidden" name="_method" value="PUT">
-
-        <div class="form-group">
+        @csrf
+        @method("PUT")
+        <div class="form-group"> 
             <label>Nome</label>
             <input type="text" name="name" class="form-control" value={{$user->name}}>
         </div>

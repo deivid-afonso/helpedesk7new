@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use OccurrenceType;
+use App\OccurrenceType;
 
 class OccurrenceTypeController extends Controller
 {
@@ -14,15 +14,15 @@ class OccurrenceTypeController extends Controller
       //dd($occurrencesType);
      // return view('admin.occurrencesType.index', compact('occurrencesType'));
 
-        $occurrencesType = \App\OccurrenceType::paginate(10);
-        return view('admin.occurrencestype.index', compact('occurrencestype'));
+        $occurrencesType = OccurrenceType::paginate(10);
+        return view('admin.occurrencesType.index', compact('occurrencesType'));
     }
 
     public function create()
     {
       $ot = \App\OcurrenceType::all(['id', 'description']);
 
-      return view('admin.occurrencestype.create', compact('occurrencestype'));
+      return view('admin.occurrencesType.create', compact('occurrencesType'));
     }
 
     public function store(Request $request)

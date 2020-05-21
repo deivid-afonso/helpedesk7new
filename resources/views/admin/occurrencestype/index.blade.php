@@ -16,10 +16,10 @@
             <td>{{ $occurrenceType->id}}</td>
             <td>{{ $occurrenceType->description}}</td>
          
-            <td>
+            {{-- <td>
                 <a href="{{route('occurrencesType.edit', ['occurrenceType'=> $occurrenceType->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
                 <a href="{{route('occurrencesType.destroy', ['occurrenceType'=> $occurrenceType->id])}}" class="btn btn-sm btn-danger">REMOVER</a>
-            </td>
+            </td> --}}
         </tr> 
         @endforeach   
       

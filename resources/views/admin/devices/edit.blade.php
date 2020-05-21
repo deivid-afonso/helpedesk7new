@@ -4,8 +4,8 @@
     <h1>Atualizar device</h1>
 <form action="{{route('devices.update', ['device=>$device->id'])}}" method="POST">
         {{-- pra gragar usar metodo store conforme acima --}}
-        <input type="hidden" name="_token" value={{csrf_token()}}>
-        <input type="hidden" name="_method" value="PUT">
+        @csrf
+        @method("PUT")
 
         <div class="form-group">
             <label>descrição</label>

@@ -8,9 +8,17 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
+use App\User;
 
 class UserController extends Controller
 {
+  private $user;
+   
+
+    public function __construct(user $user)
+    {
+       $this->user = $user;
+    }
     public function index()
     {
       // $users = $this->repository->all();
@@ -39,12 +47,14 @@ class UserController extends Controller
       try 
       {
         $data = $request->all();
-        $user = \App\User::find($data['email']);
-        //dd($user);
-        $user->user()->create($data);
+        $user = new user;
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->save();
        
         flash('Usuário criado com sucesso')->success();
-      return redirect()->route('admin.users.index');
+      return redirect()->route('users.index');
 
       } 
       catch (\Throwable $th)
@@ -61,23 +71,39 @@ class UserController extends Controller
       return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, $user)
+    public function update(Request $request, $id)
     {
-      $data = $request->all();
 
-      $user = \App\User::find($user);
-      $user->update($data);
+      try 
+      {
+        $data = $request->all();
+        //dd($id); 
+       
+        $user = User::find($id);
 
-      flash('Usuário atualizado com sucesso')->success();
-      return redirect()->route('admin.users.index');
+        #$user = new user;
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->save();
+ 
+        flash('Usuário atualizado com sucesso')->success();
+        return redirect()->route('users.index');
+      } 
+      catch (\Throwable $th) 
+      {
+        //throw $th;
+      }
+     
     }
 
     public function destroy($user)
     {
       $user = \App\User::find($user);
-      $user->delte();
+      //dd($user);
+      $user->delete();
 
       flash('Usuário Deletado com sucesso')->success();
-      return redirect()->route('admin.users.index');
+      return redirect()->route('users.index');
     }
 } 

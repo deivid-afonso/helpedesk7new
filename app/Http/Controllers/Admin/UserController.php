@@ -54,7 +54,7 @@ class UserController extends Controller
         $user->save();
        
         flash('Usuário criado com sucesso')->success();
-      return redirect()->route('users.index');
+      return redirect()->route('admin.users.index');
 
       } 
       catch (\Throwable $th)
@@ -88,7 +88,7 @@ class UserController extends Controller
         $user->save();
  
         flash('Usuário atualizado com sucesso')->success();
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
       } 
       catch (\Throwable $th) 
       {
@@ -104,6 +104,6 @@ class UserController extends Controller
       $user->delete();
 
       flash('Usuário Deletado com sucesso')->success();
-      return redirect()->route('users.index');
+      return redirect()->route('admin.users.index');
     }
 } 

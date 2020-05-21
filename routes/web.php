@@ -67,15 +67,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware'=> ['auth']], function()
 {
-    Route::resource('/admin/users', 'Admin\\UserController');
 
-    Route::resource('/admin/occurrences', 'Admin\\OcurrenceController');
-   
-    Route::resource('/admin/devices', 'Admin\\DeviceController');
-   
-    Route::resource('/admin/places', 'Admin\\PlaceController');
-   
-    Route::resource('/admin/occurrencesType', 'Admin\\OccurrenceTypeController');
-    obvio que vem null ele ta esperando um post e nao um get to usando o put
+    Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
+
+        Route::resource('users', 'UserController');
+
+        Route::resource('occurrences', 'OcurrenceController');
+       
+        Route::resource('devices', 'DeviceController');
+       
+        Route::resource('places', 'PlaceController');
+       
+        Route::resource('occurrencesType', 'OccurrenceTypeController');
+    });
+    
     
 });

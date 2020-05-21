@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Atualizar User</h1>
-    <form action="{{route('users.update', $user->id)}}" method="POST">
+    <form action="{{route('admin.users.update', $user->id)}}" method="POST">
         {{-- pra gragar usar metodo store conforme acima --}}
         @csrf
         @method("PUT")

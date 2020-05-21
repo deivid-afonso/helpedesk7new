@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('devices.create')}}" class="btn btn-lg btn-success">Criar device</a>
+<a href="{{route('admin.devices.create')}}" class="btn btn-lg btn-success">Criar device</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -22,8 +22,8 @@
             <td>{{ $device->place->description}}</td>
             
             <td>
-                <a href="{{route('devices.edit', ['device'=> $device->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                <a href="{{route('devices.destroy', ['device'=> $device->id])}}" class="btn btn-sm btn-danger">REMOVER</a>
+                <a href="{{route('admin.devices.edit', ['device'=> $device->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
+                <a href="{{route('admin.devices.destroy', ['device'=> $device->id])}}" class="btn btn-sm btn-danger">REMOVER</a>
             </td>
         </tr>
         @endforeach

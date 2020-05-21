@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Criar Device</h1>
-<form action="{{route('devices.store')}}" method="POST">
+<form action="{{route('admin.devices.store')}}" method="POST">
         {{-- pra gravar usar metodo store conforme acima --}}
         @csrf
         <div class="form-group">
@@ -16,7 +16,7 @@
         </div>
 
         {{-- esse foreach ta com erro --}}
-        <div class="form-group">
+        {{-- <div class="form-group">
             <label>Laboratório</label>
             <select name="place_id" class="form-control">
                 @foreach ($places as $place)
@@ -25,7 +25,7 @@
                   
                 @endforeach
             </select>    
-        </div>
+        </div> --}}
         
         
         

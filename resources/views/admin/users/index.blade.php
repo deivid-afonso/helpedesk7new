@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('users.create')}}" class="btn btn-lg btn-success">Criar User</a>
+<a href="{{route('admin.users.create')}}" class="btn btn-lg btn-success">Criar User</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -21,9 +21,9 @@
             
             <td>
               <div class="btn-group">
-                <a href="{{route('users.edit', ['user'=> $user->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
+                <a href="{{route('admin.users.edit', ['user'=> $user->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
                 {{-- <a href="{{route('users.destroy', ['user'=> $user->id])}}" class="btn btn-sm btn-danger">REMOVER</a> --}}
-                <form action="{{route('users.destroy', ['user' => $user->id])}}" method="post">
+                <form action="{{route('admin.users.destroy', ['user' => $user->id])}}" method="post">
                     @csrf
                     @method("DELETE")
                     <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>

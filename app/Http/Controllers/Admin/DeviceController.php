@@ -47,7 +47,7 @@ class DeviceController extends Controller
        $device->save();
     
        flash('Equipamento cadastrado com sucesso')->success();
-       return redirect()->route('devices.index');
+       return redirect()->route('admin.devices.index');
 
      } 
      catch (\Throwable $th)

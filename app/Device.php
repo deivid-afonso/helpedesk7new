@@ -13,6 +13,7 @@ class Device extends Model
     public function place()//lab
     {
         return $this->belongsTo(Place::class);
+        
     }
 
 }

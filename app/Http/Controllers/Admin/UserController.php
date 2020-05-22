@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -21,11 +22,7 @@ class UserController extends Controller
     }
     public function index()
     {
-      // $users = $this->repository->all();
-
-        //return view('user.index', [
-          //  'users' => $users
-        //]);
+      
 
         $users = \App\User::paginate(10);
         //dd($users);
@@ -42,10 +39,12 @@ class UserController extends Controller
       return view('admin.users.create', compact('users'));
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
       try 
       {
+        $user =auth()->user();//tras os dados do user, usar depois no user default pra gravar os chamados no
+
         $data = $request->all();
         $user = new user;
         $user->name = $data['name'];
@@ -66,22 +65,20 @@ class UserController extends Controller
 
     public function edit($user)
     {
-      $user = \App\User::find($user);
+      $user = \App\User::findOrFail($user);
 
       return view('admin.users.edit', compact('user'));
     }
 
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
 
       try 
       {
         $data = $request->all();
-        //dd($id); 
-       
+
         $user = User::find($id);
 
-        #$user = new user;
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = $data['password'];
@@ -99,7 +96,7 @@ class UserController extends Controller
 
     public function destroy($user)
     {
-      $user = \App\User::find($user);
+      $user = \App\User::findOrFail($user);
       //dd($user);
       $user->delete();
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Atualizar device</h1>
-<form action="{{route('admin.devices.update', $device->id)}}" method="POST">
+<form action="{{route('admin.devices.update', $device ?? ''->id)}}" method="POST">
     
         {{-- pra gragar usar metodo store conforme acima --}}
         @csrf
@@ -10,22 +10,30 @@
 
         <div class="form-group">
             <label>descrição</label>
-            <input type="text" name="description" class="form-control" value={{$device->description}}>
+            <input type="text" name="description" class="form-control"  @error('description') is-invalid @enderror" value={{$device->description}}>
+
+            @error('description')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         
         <div class="form-group">
-            <label>E-mail</label>
+            <label>Patrimônio</label>
             <input type="text" name="patrimony" class="form-control" value={{$device->patrimony}}>
         </div>
         
         {{-- esse foreach ta com erro --}}
         {{-- <div class="form-group">
             <label>Laboratório</label>
-            <select name="place_id" class="form-control">
+            <select name="place" class="form-control">
+               
                 @foreach ($places as $place)
-                     <option value="{{'$place->id'}}">{{$place->description}}</option>
-                @endforeach
-            </select>    
+                    <option value="{{$place->id}}">{{$place->description}} </option>
+                 @endforeach
+            </select>
+           
         </div> --}}
         
       

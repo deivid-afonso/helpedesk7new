@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Place;
+use App\Http\Requests\PlaceRequest;
+
 class PlaceController extends Controller
 {
     private $place;
@@ -18,21 +20,23 @@ class PlaceController extends Controller
     public function index()
     {
      
-      $places = $this->place->paginate(10);
-        //dd($places);
+      $places = \App\Place::paginate(10);
+      
       return view('admin.places.index', compact('places'));
     }
  
+
     public function create()
     {
-       $place = \App\Place::all(['id', 'description']);
-       return view('admin.places.create');
+
+       $places = \App\Place::all(['id', 'description']);
+       return view('admin.places.create', compact('places'));
     }
  
     
  
  
-    public function store(Request $request)
+    public function store(PlaceRequest $request)
     {
       try 
       {
@@ -45,7 +49,7 @@ class PlaceController extends Controller
         $place->save();
      
         flash('Lugar cadastrado com sucesso')->success();
-        return redirect()->route('places.index');
+        return redirect()->route('admin.places.index');
  
       } 
       catch (\Throwable $th)
@@ -61,38 +65,42 @@ class PlaceController extends Controller
        return view('admin.places.edit', compact('place'));
     }
  
-    public function update(Request $request, $place)
+    public function update(PlaceRequest $request, $place)
     {
 
         try
         {
-            $data = $request->all();
-            //dd($data);
-           $this->place->find($place);
+          $data = $request->all();
+          //dd($id); 
          
-           //ver update e delete
+          $place = Place::findOrFail($place);
+  
+          
+          $place->description = $data['description'];
+          $place->save();
 
 
             flash('Lugar cadastrado com sucesso')->success();
-            return redirect()->route('places.index');
+            return redirect()->route('admin.places.index');
         } 
         catch (\Throwable $th) 
         {
             throw $th;
             flash('Erro, não cadastrado')->warning();
-            return redirect()->route('places.index');
+            return redirect()->route('admin.places.index');
 
 
         }
       
     }
  
-    public function destroy($id)
+    public function destroy($place)
     {
-       $place = \App\Place::find($place);
+       $place = \App\Place::findOrFail($place);
+       //dd($place);
        $place->delete();
  
-       flash('Usuário Deletado com sucesso')->success();
+       flash('Lugar Deletado com sucesso')->success();
        return redirect()->route('admin.places.index');
     }
 

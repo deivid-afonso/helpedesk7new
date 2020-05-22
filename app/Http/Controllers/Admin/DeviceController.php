@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Device;
+use App\Place;
+use App\Http\Requests\DeviceRequest;
+
 
 class DeviceController extends Controller
 {
@@ -18,7 +21,7 @@ class DeviceController extends Controller
 
    public function index()
    {
-     $place_list = \App\Place::pluck('description', 'id')->all();
+     $places = \App\Place::pluck('description', 'id')->all();
      //dd($lab_list);
      $devices = $this->device->paginate(10);
 
@@ -27,18 +30,20 @@ class DeviceController extends Controller
 
    public function create()
    {
+      $places = Place::all();//lista places
+      //dd($places);
       $device = \App\Device::all(['id', 'description', 'patrimony', 'place_id']);
-      return view('admin.devices.create');
+      return view('admin.devices.create', compact('places'));
    }
 
    
 
 
-   public function store(Request $request)
+   public function store(DeviceRequest $request)
    {
      try 
      {
-       $data = $request->all();
+       $data = $DeviceRequest->all();
        
        $device = new Device;
        $device->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
@@ -59,27 +64,38 @@ class DeviceController extends Controller
 
    public function edit($device)
    {
-      $device = $this->device->find($device);
+      $device = \App\Device::findOrFail($device);
       return view('admin.devices.edit', compact('device'));
    }
 
-   public function update(Request $request, $id)
+   public function update(DeviceRequest $request, $id)
    {
-      $data = $request->all();
+      try 
+      {
+        $data = $request->all();
+       
+        $device = device::find($id);
 
-      $user = \App\User::find($user);
-      $user->update($data);
-
-      flash('Usuário atualizado com sucesso')->success();
-      return redirect()->route('admin.users.index');
+        $device->description = $data['description'];
+        $device->patrimony = $data['patrimony'];
+        $device->save();
+ 
+        flash('Usuário atualizado com sucesso')->success();
+        return redirect()->route('admin.devices.index');
+      } 
+      catch (\Throwable $th) 
+      {
+        throw $th;
+      }
    }
 
-   public function destroy($id)
+   public function destroy($device)
    {
-      $user = \App\User::find($user);
-      $user->delte();
+      $device = \App\Device::findOrFail($device);
+      //dd($device);
+      $device->delete();
 
       flash('Usuário Deletado com sucesso')->success();
-      return redirect()->route('admin.users.index');
+      return redirect()->route('admin.devices.index');
    }
 }

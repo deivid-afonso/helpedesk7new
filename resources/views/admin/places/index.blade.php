@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('places.create')}}" class="btn btn-lg btn-success">Criar device</a>
+<a href="{{route('admin.places.create')}}" class="btn btn-lg btn-success">Criar Lab</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -17,9 +17,15 @@
             <td>{{ $place->description}}</td>
          
             <td>
-                <a href="{{route('places.edit', ['place'=> $place->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                <a href="{{route('places.destroy', ['place'=> $place->id])}}" class="btn btn-sm btn-danger">REMOVER</a>
-            </td>
+                <div class="btn-group">
+                  <a href="{{route('admin.places.edit', ['place'=> $place->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
+                  <form action="{{route('admin.places.destroy', ['place' => $place->id])}}" method="post">
+                      @csrf
+                      @method("DELETE")
+                      <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
+                  </form>
+                </div>
+              </td>
         </tr> 
         @endforeach   
       

@@ -22,7 +22,6 @@
             <td>
               <div class="btn-group">
                 <a href="{{route('admin.users.edit', ['user'=> $user->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                {{-- <a href="{{route('users.destroy', ['user'=> $user->id])}}" class="btn btn-sm btn-danger">REMOVER</a> --}}
                 <form action="{{route('admin.users.destroy', ['user' => $user->id])}}" method="post">
                     @csrf
                     @method("DELETE")

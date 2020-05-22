@@ -22,9 +22,15 @@
             <td>{{ $device->place->description}}</td>
             
             <td>
-                <a href="{{route('admin.devices.edit', ['device'=> $device->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                <a href="{{route('admin.devices.destroy', ['device'=> $device->id])}}" class="btn btn-sm btn-danger">REMOVER</a>
-            </td>
+                <div class="btn-group">
+                  <a href="{{route('admin.devices.edit', ['device'=> $device->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
+                  <form action="{{route('admin.devices.destroy', ['device' => $device->id])}}" method="post">
+                      @csrf
+                      @method("DELETE")
+                      <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
+                  </form>
+                </div>
+              </td>
         </tr>
         @endforeach
     </tbody>

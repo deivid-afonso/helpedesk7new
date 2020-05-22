@@ -15,10 +15,9 @@
             <input type="text" name="patrimony" class="form-control">
         </div>
 
-        {{-- esse foreach ta com erro --}}
         <div class="form-group">
             <label>Laboratório</label>
-            <select name="place" class="form-control">
+            <select name="place_id" class="form-control">
                
                 @foreach ($places as $place)
                     <option value="{{$place->id}}">{{$place->description}} </option>

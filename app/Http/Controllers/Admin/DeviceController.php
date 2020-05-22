@@ -43,12 +43,13 @@ class DeviceController extends Controller
    {
      try 
      {
-       $data = $DeviceRequest->all();
-       
+       $data = $request->all();
+      //  dd($data);
        $device = new Device;
-       $device->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
        $device->description = $data['description'];
        $device->patrimony = $data['patrimony'];
+       $device->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
+
        $device->save();
     
        flash('Equipamento cadastrado com sucesso')->success();
@@ -80,7 +81,7 @@ class DeviceController extends Controller
         $device->patrimony = $data['patrimony'];
         $device->save();
  
-        flash('Usuário atualizado com sucesso')->success();
+        flash('Equipamento atualizado com sucesso')->success();
         return redirect()->route('admin.devices.index');
       } 
       catch (\Throwable $th) 

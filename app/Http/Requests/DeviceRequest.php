@@ -13,7 +13,7 @@ class DeviceRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -32,7 +32,6 @@ class DeviceRequest extends FormRequest
     public function messages()
     {
         return[
-            'min' => 'Campo deve ter no mínimo :min caracteres',
             'max' => 'Campo deve ter no máximo :max caracteres',
             'required' => 'Campo obrigatório',
            

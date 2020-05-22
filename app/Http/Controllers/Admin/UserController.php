@@ -76,9 +76,10 @@ class UserController extends Controller
       try 
       {
         $data = $request->all();
+        //dd($data);
 
         $user = User::find($id);
-
+        //dd($user);
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->password = $data['password'];

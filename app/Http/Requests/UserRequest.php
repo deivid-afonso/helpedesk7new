@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required', 'string', 'min:8'],
         ];
     }
@@ -37,7 +37,6 @@ class UserRequest extends FormRequest
             'max' => 'Campo deve ter no máximo :max caracteres',
             'required' => 'Campo obrigatório',
             'email' => 'Um email válido é requerido',
-            'unique' => 'E-mail já existe na nossa base de dados',
 
         ];
     }

@@ -45,17 +45,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
- 
-//  Route::get('/admin/devices', 'Admin\\DeviceController@index');
-//  Route::get('/admin/devices/create', 'Admin\\DeviceController@create');
-//  Route::post('/admin/devices/store', 'Admin\\DeviceController@store');
-
- 
- 
-//  Route::get('/admin/occurrencestype', 'Admin\\OccurrenceTypeController@index');
-//  Route::get('/admin/occurrencestype/create', 'Admin\\OccurrenceTypeController@create');
-//  Route::post('/admin/occurrencestype/store', 'Admin\\OccurrenceTypeController@store');
-
 
  Route::get('/', function () {
     return view('welcome');
@@ -78,7 +67,7 @@ Route::group(['middleware'=> ['auth']], function()
        
         Route::resource('places', 'PlaceController');
        
-        Route::resource('occurrencesType', 'OccurrenceTypeController');
+        Route::resource('occurrencestype', 'OccurrenceTypeController');
     });
     
     

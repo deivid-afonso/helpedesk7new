@@ -7,18 +7,31 @@
         @csrf
         <div class="form-group">
             <label>Descrição</label>
-            <input type="text" name="description" class="form-control">
+            <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" value="{{old('description')}}">
+
+            @error('description')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
         
         <div class="form-group">
             <label>Patrimonio</label>
-            <input type="text" name="patrimony" class="form-control">
+            <input type="text" name="patrimony" class="form-control @error('patrimony') is-invalid @enderror" value="{{old('patrimony')}}">
+
+            @error('patrimony')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
         </div>
 
         <div class="form-group">
             <label>Laboratório</label>
             <select name="place_id" class="form-control">
-               
+
+         
                 @foreach ($places as $place)
                     <option value="{{$place->id}}">{{$place->description}} </option>
                  @endforeach

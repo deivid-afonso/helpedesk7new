@@ -32,8 +32,8 @@
               <a class="nav-link" href="{{route('admin.places.index')}}">Laboratórios <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item @if(request()->is('admin/occurrencesType')) active @endif">
-              <a class="nav-link" href="{{route('admin.occurrencesType.index')}}">Tipo Ocorrência <span class="sr-only">(current)</span></a>
+            <li class="nav-item @if(request()->is('admin/occurrencestype')) active @endif">
+              <a class="nav-link" href="{{route('admin.occurrencestype.index')}}">Tipo Ocorrência <span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item @if(request()->is('admin/occurrences')) active @endif">

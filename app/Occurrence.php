@@ -17,13 +17,19 @@ class Occurrence extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function ocurrence_type()
+    public function occurrencetype()
     {
-        return $this->belongsTo(OcurrenceType::class, 'occurrence_type_id');
+        return $this->belongsTo(OccurrenceType::class, 'occurrence_type_id');
     }
 
     public function device()
     {
         return $this->belongsTo(Device::class, 'device_id');
+    }
+
+    public function place()//lab
+    {
+        return $this->belongsTo(Place::class);
+        
     }
 }

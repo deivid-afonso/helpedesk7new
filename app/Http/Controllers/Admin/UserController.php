@@ -22,8 +22,6 @@ class UserController extends Controller
     }
     public function index()
     {
-      
-
         $users = \App\User::paginate(10);
         //dd($users);
         return view('admin.users.index', compact('users'));
@@ -31,9 +29,7 @@ class UserController extends Controller
 
    
     public function create()
-    {
-
-      
+    { 
       $users = \App\User::all(['id', 'name', 'email', 'password']);
 
       return view('admin.users.create', compact('users'));
@@ -43,7 +39,7 @@ class UserController extends Controller
     {
       try 
       {
-        $user =auth()->user();//tras os dados do user, usar depois no user default pra gravar os chamados no
+       // $user =auth()->user();//tras os dados do user, usar depois no user default pra gravar os chamados no
 
         $data = $request->all();
         $user = new user;

@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <label>descrição</label>
-            <input type="text" name="description" class="form-control"  @error('description') is-invalid @enderror" value={{$device->description}}>
+            <input type="text" name="description" class="form-control  @error('description') is-invalid @enderror" value={{$device->description}}>
 
             @error('description')
                 <div class="invalid-feedback">
@@ -24,20 +24,19 @@
             <input type="text" name="patrimony" class="form-control" value={{$device->patrimony}}>
         </div>
         
-        {{-- esse foreach ta com erro --}}
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label>Laboratório</label>
-            <select name="place" class="form-control">
+            <select name="place" class="form-control" >
                
-                @foreach ($places as $place)
-                    <option value="{{$place->id}}">{{$place->description}} </option>
+                @foreach ($places as $place) 
+                    <option value="{{$place->id}}" {{($place->id == $device->place_id) ? "selected" : ""}}>{{$place->description}}</option>
+      
                  @endforeach
             </select>
            
-        </div> --}}
+        </div>
         
       
-        
         <div class="form-group">
             <button type="submit" class="btn btn-lg btn-success">Atualizar device</button>
         </div>

@@ -19,7 +19,7 @@
     
         
         <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-success">Criar Tipo Ocorrencia</button>
+            <button type="submit" class="btn btn-lg btn-success">Criar Tipo Ocorrência</button>
         </div>
     </form>
 @endsection    

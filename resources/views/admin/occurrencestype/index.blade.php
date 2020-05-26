@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{route('admin.occurrencestype.create')}}" class="btn btn-lg btn-success">Criar Lab</a>
+<a href="{{route('admin.occurrencestype.create')}}" class="btn btn-lg btn-success">Criar Tipo de Ocorrência</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -11,28 +11,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($occurrencesType as $occurrenceType)
+        @foreach($occurrencestypes as $occurrencestype)
         <tr>
-            <td>{{ $occurrenceType->id}}</td>
-            <td>{{ $occurrenceType->description}}</td>
-         
+            <td>{{ $occurrencestype->id}}</td>
+            <td>{{ $occurrencestype->description}}</td>
+           
             <td>
                 <div class="btn-group">
-                  <a href="{{route('admin.occurrencestype.edit', ['occurrencetype'=> $occurrenceType->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                  <form action="{{route('admin.occurrencestype.destroy', ['occurrencetype' => $occurrenceType->id])}}" method="post">
+                  <a href="{{route('admin.occurrencestype.edit', ['occurrencestype'=> $occurrencestype->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
+                  <form action="{{route('admin.occurrencestype.destroy', ['occurrencestype' => $occurrencestype->id])}}" method="post">
                       @csrf
                       @method("DELETE")
                       <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
                   </form>
                 </div>
               </td>
+
         </tr> 
-        @endforeach   
+        @endforeach
       
     </tbody>
     
 
 </table>
 
-{{$occurrenceType->links()}}
+{{$occurrencestypes->links()}}
 @endsection

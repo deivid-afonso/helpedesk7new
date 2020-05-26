@@ -9,31 +9,28 @@ use App\Http\Requests\OccurrenceTypeRequest;
 
 class OccurrenceTypeController extends Controller
 {
-  private $occurrenceType;
+  private $occurrencetype;
    
 
-  public function __construct(occurrenceType $occurrenceType)
+  public function __construct(occurrencetype $occurrencetype)
   {
-     $this->occurrenceType = $occurrenceType;
+     $this->occurrencetype = $occurrencetype;
   }
 
   public function index()
   {
-   
-    
-
-    $occurrencesType = \App\OccurrenceType::paginate(10);
-    //dd($occurrenceType);
-    return view('admin.occurrencestype.index', compact('occurrencesType'));
+    $occurrencestypes = \App\OccurrenceType::paginate(10);
+    //dd($occurrencesType eu botei tudo minusculo pra minimizar os erro, e nada
+    return view('admin.occurrencestype.index', compact('occurrencestypes'));
   }
 
 
   public function create()
   {
 
-     $occurrencesType = \App\OccurrenceType::all(['id', 'description']);
+     $occurrencestype = \App\OccurrenceType::all(['id', 'description']);
      
-     return view('admin.occurrencestype.create', compact('occurrencesType'));
+     return view('admin.occurrencestype.create', compact('occurrencestype'));
   }
 
   
@@ -45,30 +42,32 @@ class OccurrenceTypeController extends Controller
     {
       $data = $request->all();
       
-      $occurrenceType = new OccurrenceType;
+      $occurrencetype = new Occurrencetype;
   
-      $occurrenceType->description = $data['description'];
+      $occurrencetype->description = $data['description'];
    
-      $occurrenceType->save();
+      $occurrencetype->save();
    
-      flash('Lugar cadastrado com sucesso')->success();
+      flash('tipo de ocorrência cadastrado com sucesso')->success();
       return redirect()->route('admin.occurrencestype.index');
 
     } 
     catch (\Throwable $th)
     {
       throw $th;
-    }
+    } //o link do menu vc vai chamar admin.ocurrencestype.create
    
   }
 
-  public function edit($occurrenceType)
+  public function edit($occurrencetype)
   {
-     $occurrencesType = $this->occurrenceType->findOrFail($occurrenceType);
-     return view('admin.occurrencestype.edit', compact('occurrencesType'));
+      $occurrencetype = \App\OccurrenceType::findOrFail($occurrencetype);
+      //dd($occurrencetype);
+      return view('admin.occurrencestype.edit', compact('occurrencetype'));
+    
   }
 
-  public function update(OccurrenceTypeRequest $request, $occurrenceType)
+  public function update(OccurrenceTypeRequest $request, $occurrencetype)
   {
 
       try
@@ -76,14 +75,14 @@ class OccurrenceTypeController extends Controller
         $data = $request->all();
         //dd($id); 
        
-        $occurrenceType = OccurrenceType::findOrFail($occurrenceType);
+        $occurrencetype = OccurrenceType::findOrFail($occurrencetype);
 
         
-        $occurrenceType->description = $data['description'];
-        $occurrenceType->save();
+        $occurrencetype->description = $data['description'];
+        $occurrencetype->save();
 
 
-          flash('Lugar cadastrado com sucesso')->success();
+          flash('Tipo de ocorrencia atualizada com sucesso')->success();
           return redirect()->route('admin.occurrencestype.index');
       } 
       catch (\Throwable $th) 
@@ -97,13 +96,19 @@ class OccurrenceTypeController extends Controller
     
   }
 
-  public function destroy($occurrenceType)
+  public function destroy($occurrencetype)
   {
-     $occurrenceType = \App\OccurrenceType::findOrFail($occurrenceType);
-     //dd($occurrenceType);
-     $occurrenceType->delete();
-
-     flash('Lugar Deletado com sucesso')->success();
-     return redirect()->route('admin.occurrencestype.index');
+     try {
+      $occurrencetype = \App\OccurrenceType::findOrFail($occurrencetype);
+      //dd($occurrencetype);
+      $occurrencetype->delete();
+ 
+      flash('Tipo ocorrência Deletado com sucesso')->success();
+      return redirect()->route('admin.occurrencestype.index');
+     } catch (\Throwable $th) {
+      flash('Tipo ocorrência não pode ser deletado!')->warning();
+      return redirect()->route('admin.occurrencestype.index');
+       throw $th;
+     }
   }
 }

@@ -20,23 +20,23 @@
           
       
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item @if(request()->is('admin/users')) active @endif ">
+            <li class="nav-item @if(request()->is('admin/users*')) active @endif ">
             <a class="nav-link" href="{{route('admin.users.index')}}">Usuários <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item @if(request()->is('admin/devices')) active @endif">
+            <li class="nav-item @if(request()->is('admin/devices*')) active @endif">
               <a class="nav-link" href="{{route('admin.devices.index')}}">Equipamentos <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item @if(request()->is('admin/places')) active @endif">
+            <li class="nav-item @if(request()->is('admin/places*')) active @endif">
               <a class="nav-link" href="{{route('admin.places.index')}}">Laboratórios <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item @if(request()->is('admin/occurrencestype')) active @endif">
+            <li class="nav-item @if(request()->is('admin/occurrencestype*')) active @endif">
               <a class="nav-link" href="{{route('admin.occurrencestype.index')}}">Tipo Ocorrência <span class="sr-only">(current)</span></a>
             </li>
 
-            <li class="nav-item @if(request()->is('admin/occurrences')) active @endif">
+            <li class="nav-item @if(request()->is('admin/occurrences*')) active @endif">
               <a class="nav-link" href="{{route('admin.occurrences.index')}}">Ocorrências <span class="sr-only">(current)</span></a>
             </li>
 

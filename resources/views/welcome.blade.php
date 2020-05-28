@@ -71,7 +71,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
+                        {{--create user default  --}}
                         {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif --}}
@@ -80,7 +80,7 @@
                     {{-- @guest
                         <h1>Usuário não logado</h1>
                     @else
-                        <h1>Usuário logado</h1>    
+                        <h1>Usuário logado</h1>
                     @endguest --}}
                 </div>
             @endif

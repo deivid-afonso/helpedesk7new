@@ -18,16 +18,16 @@ use Illuminate\Support\Facades\Route;
 //Route::resource('Place', 'LabsController');
 
 
-// $user = new \App\User(); add user  modo active record
+// $user = new \App\User(); //add user  modo active record
 // $user->name = 'Deivid';
 // $user->email = 'deividsa@gmail.com';
-// $user->password = bcrypt('123456');
+// $user->password = bcrypt('123456789');
 // $user->save();
- //return \App\User::all();
+// return \App\User::all();
 
  //tste rota adm
 
- 
+
 
 // Route::prefix('admin')->namespace('Admin')->group(function(){
 //     Route::prefix('users')->group(function(){
@@ -38,10 +38,10 @@ use Illuminate\Support\Facades\Route;
 //         Route::post('/update{user}', 'UserController@update')->name('admin.users.update');
 //         Route::post('/destroy{user}', 'UserController@destroy')->name('admin.users.destroy');
 
-        
+
 //     });
 // });
-   
+
 
 
 
@@ -62,13 +62,13 @@ Route::group(['middleware'=> ['auth']], function()
         Route::resource('users', 'UserController');
 
         Route::resource('occurrences', 'OcurrenceController');
-       
+
         Route::resource('devices', 'DeviceController');
-       
+
         Route::resource('places', 'PlaceController');
-       
+
         Route::resource('occurrencestype', 'OccurrenceTypeController');
     });
-    
-    
+
+
 });

@@ -6,9 +6,9 @@
         {{-- pra gragar usar metodo store conforme acima --}}
         @csrf
         @method("PUT")
-        <div class="form-group"> 
+        <div class="form-group">
             <label>Nome</label>
-            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value={{$user->name}}>
+            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}">
 
             @error('name')
                 <div class="invalid-feedback">
@@ -16,14 +16,14 @@
                 </div>
             @enderror
         </div>
-        
+
         <div class="form-group">
             <label>E-mail</label>
-            <input type="text" name="email" class="form-control " value={{$user->email}}>
+            <input type="text" name="email" class="form-control " value="{{$user->email}}">
 
-         
+
         </div>
-        
+
         <div class="form-group">
             <label>Senha</label>
             <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror">
@@ -34,9 +34,9 @@
                 </div>
             @enderror
         </div>
-        
+
         <div class="form-group">
             <button type="submit" class="btn btn-lg btn-success">Atualizar user</button>
         </div>
     </form>
-@endsection    
+@endsection

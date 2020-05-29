@@ -14,7 +14,7 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
   private $user;
-   
+
 
     public function __construct(user $user)
     {
@@ -27,9 +27,9 @@ class UserController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-   
+
     public function create()
-    { 
+    {
       $users = \App\User::all(['id', 'name', 'email', 'password']);
 
       return view('admin.users.create', compact('users'));
@@ -37,7 +37,7 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-      try 
+      try
       {
        // $user =auth()->user();//tras os dados do user, usar depois no user default pra gravar os chamados no
 
@@ -47,29 +47,29 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->password = $data['password'];
         $user->save();
-       
+
         flash('Usuário criado com sucesso')->success();
       return redirect()->route('admin.users.index');
 
-      } 
+      }
       catch (\Throwable $th)
       {
         throw $th;
       }
-     
+
     }
 
     public function edit($user)
     {
       $user = \App\User::findOrFail($user);
-
+        //dd($user);
       return view('admin.users.edit', compact('user'));
     }
 
     public function update(UserRequest $request, $id)
     {
 
-      try 
+      try
       {
         $data = $request->all();
         //dd($data);
@@ -80,15 +80,15 @@ class UserController extends Controller
         $user->email = $data['email'];
         $user->password = $data['password'];
         $user->save();
- 
+
         flash('Usuário atualizado com sucesso')->success();
         return redirect()->route('admin.users.index');
-      } 
-      catch (\Throwable $th) 
+      }
+      catch (\Throwable $th)
       {
         //throw $th;
       }
-     
+
     }
 
     public function destroy($user)
@@ -100,4 +100,4 @@ class UserController extends Controller
       flash('Usuário Deletado com sucesso')->success();
       return redirect()->route('admin.users.index');
     }
-} 
+}

@@ -49,13 +49,15 @@ class OcurrenceController extends Controller
       $places = Place::all('id', 'description');//lista places
       //dd($places);
       $devices = Device::all(['id', 'description']);
+      $users = User::all(['id', 'name']);
+      $occurrencestype = OccurrenceType::all(['id', 'description']);
       //dd($devices);
      //add os outros campos no create e no edit
 
 
 
-       $occurrence = \App\Occurrence::all(['id', 'place_id', 'device_id']);
-       return view('admin.occurrences.create', compact('occurrence', 'places', 'devices'));
+       $occurrence = \App\Occurrence::all(['id', 'place_id', 'device_id', 'user_id']);
+       return view('admin.occurrences.create', compact('occurrence', 'places', 'devices', 'users', 'occurrencestype'));
     }
 
 
@@ -65,13 +67,14 @@ class OcurrenceController extends Controller
     {
       try
       {
+          dd($request);
         $data = $request->all();
-       //  dd($data);
-        $occurrence = new occurrence;
-        $occurrence->description = $data['description'];
-        $occurrence->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
+         dd($data);
+        //$occurrence = new occurrence;
+       // $occurrence->description = $data['description'];
+        //$occurrence->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
 
-        $occurrence->save();
+        //$occurrence->save();
 
         flash('Equipamento cadastrado com sucesso')->success();
         return redirect()->route('admin.occurrences.index');
@@ -80,6 +83,7 @@ class OcurrenceController extends Controller
       catch (\Throwable $th)
       {
         throw $th;
+        flash('Error')->warning();
       }
 
     }

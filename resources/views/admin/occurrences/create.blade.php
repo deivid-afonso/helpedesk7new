@@ -5,7 +5,7 @@
 <form action="{{route('admin.occurrences.store')}}" method="POST">
         @csrf
 
-        {{-- <div class="form-group">
+        <div class="form-group">
             <label>User</label>
             <select name="user_id" class="form-control">
 
@@ -15,7 +15,27 @@
                  @endforeach
             </select>
 
-        </div> --}}
+        </div>
+
+        {{-- layout estado cidade
+            https://blog.schoolofnet.com/trabalhando-com-ajax-no-laravel/ --}}
+        {{-- {!! Form::label('estado', 'Estados:') !!}
+        {!! Form::select('estado', $estados) !!}
+
+        {!! Form::label('cidade', 'Cidades:') !!}
+        {!! Form::select('cidade', []) !!} --}}
+
+        <div class="form-group">
+            <label>Tipo Ocorrência</label>
+            <select name="occurrencetype_id" class="form-control">
+
+
+                @foreach ($occurrencestype as $occurrencetype)
+                    <option value="{{$occurrencetype->id}}">{{$occurrencetype->description}} </option>
+                 @endforeach
+            </select>
+
+        </div>
 
         <div class="form-group">
             <label>Laboratório</label>
@@ -80,3 +100,18 @@
         </div>
     </form>
 @endsection
+
+{{-- metodo estado cidade --}}
+{{-- @section('post-script')
+<script type="text/javascript">
+    $('select[name=estado]').change(function () {
+        var idEstado = $(this).val();
+        $.get('/get-cidades/' + idEstado, function (cidades) {
+            $('select[name=cidade]').empty();
+            $.each(cidades, function (key, value) {
+                $('select[name=cidade]').append('<option value=' + value.id + '>' + value.cidade + '</option>');
+            });
+        });
+    });
+</script>
+@endsection --}}

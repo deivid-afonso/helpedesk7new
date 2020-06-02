@@ -9,11 +9,33 @@
         @method("PUT")
 
         <div class="form-group">
-            <label>Tipo ocorrência</label>
-            <select name="place" class="form-control" >
+            <label>Laboratório</label>
+            <select disabled name="place" class="form-control" >
 
                 @foreach ($places as $place)
-                    <option value="{{$place->id}}" {{($place->id == $device->place_id) ? "selected" : ""}}>{{$place->description}}</option>
+                    <option  value="{{$place->id}}" {{($place->id == $occurrence->place_id) ? "selected" : ""}}>{{$place->description}}</option>
+
+                 @endforeach
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label>Equipamento</label>
+            <select disabled name="device" class="form-control" >
+                @foreach ($devices as $device)
+                    <option  value="{{$device->id}}" {{($device->id == $occurrence->device_id) ? "selected" : ""}}>{{$device->description}}</option>
+
+                 @endforeach
+            </select>
+
+        </div>
+
+        <div class="form-group">
+            <label>Tipo Ocorrência</label>
+            <select disabled name="occurrencetype" class="form-control" >
+                @foreach ($occurrencestype as $occurrencetype)
+                    <option  value="{{$occurrencetype->id}}" {{($occurrencetype->id == $occurrence->occurrencetype_id) ? "selected" : ""}}>{{$occurrencetype->description}}</option>
 
                  @endforeach
             </select>
@@ -22,7 +44,7 @@
 
         <div class="form-group">
             <label>solucao</label>
-            <input type="text" name="status" class="form-control  @error('solution') is-invalid @enderror" value="{{$occurrence->solution}}">
+            <input type="text" name="solution" class="form-control  @error('solution') is-invalid @enderror" value="{{$occurrence->solution}}">
 
             @error('solution')
                 <div class="invalid-feedback">

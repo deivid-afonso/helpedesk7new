@@ -27,11 +27,11 @@
 
         <div class="form-group">
             <label>Tipo Ocorrência</label>
-            <select name="occurrencetype_id" class="form-control">
+            <select name="occurrence_type_id" class="form-control">
 
 
-                @foreach ($occurrencestype as $occurrencetype)
-                    <option value="{{$occurrencetype->id}}">{{$occurrencetype->description}} </option>
+                @foreach ($occurrencestype as $occurrence_type_id)
+                    <option value="{{$occurrence_type_id->id}}">{{$occurrence_type_id->description}} </option>
                  @endforeach
             </select>
 

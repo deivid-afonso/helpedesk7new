@@ -13,6 +13,8 @@
             <th>Tipo Ocorrência</th>
             <th>Solução</th>
             <th>Obs</th>
+            <th>data de abertura</th>
+            <th>data fechamento</th>
             <th>Opções</th>
 			
         </tr>
@@ -28,17 +30,36 @@
             <td>{{$occurrence->occurrencetype->description}}</td>
             <td>{{$occurrence->solution}}</td>
             <td>{{$occurrence->obs}}</td>
+            <td>{{\Carbon\Carbon::parse($occurrence->created_at)->format('d/m/Y')}}</td>
+            <td >
+                @if ($occurrence->status == 'resolvido')
+                    {{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}
+                @else
+                aberto 
+                @endif
+               
+            </td>
             
             <td>
+
+                @if ($occurrence->status == 'resolvido')
+                <a href="" class="btn btn-sm btn-dark">Fechado</a> 
+              
+                @else
                 <div class="btn-group">
-                  <a href="{{route('admin.occurrences.edit', ['occurrence'=> $occurrence->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                  <form action="{{route('admin.occurrences.destroy', ['occurrence' => $occurrence->id])}}" method="post">
-                      @csrf
-                      @method("DELETE")
-                      <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
-                  </form>
+                    <a href="{{route('admin.occurrences.edit', ['occurrence'=> $occurrence->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
+                    {{-- <form action="{{route('admin.occurrences.destroy', ['occurrence' => $occurrence->id])}}" method="post">
+                        em tese esse metodo ocorrencias nao devem ser apagadas
+                        @csrf
+                        @method("DELETE")
+                        <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
+                    </form> --}}
                 </div>
-              </td>
+                
+                @endif
+           
+               
+            </td>
         </tr>
         @endforeach
     </tbody>

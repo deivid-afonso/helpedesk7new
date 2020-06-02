@@ -4,7 +4,7 @@
     <h1>Atualizar device</h1>
 <form action="{{route('admin.devices.update', $device ?? ''->id)}}" method="POST">
 
-        {{-- pra gragar usar metodo store conforme acima --}}
+        {{-- pra gravar usar metodo store conforme acima --}}
         @csrf
         @method("PUT")
 

@@ -24,16 +24,15 @@ class OccurrenceRequest extends FormRequest
     public function rules()
     {
         return [
-            'occurrence_type_id' => ['required'],
-            'device_id' => ['required'],
+            // 'occurrence_type_id' => ['required'],
+            // 'device_id' => ['required'],
            
         ];
     }
     public function messages()
     {
         return[
-            'min' => 'Campo deve ter no mínimo :min caracteres',
-            'max' => 'Campo deve ter no máximo :max caracteres',
+            
             'required' => 'Campo obrigatório',
            
 

@@ -24,22 +24,7 @@ class OcurrenceController extends Controller
 
     public function index()
     {
-
-      $places = \App\Place::pluck('description', 'id')->all();
-      $devices = \App\Device::pluck('description', 'id')->all();
-      $occurrencestype = \App\OccurrenceType::pluck('description', 'id')->all();
-      //dd($ocurrencestype);
-      // $devices = \App\Device::with('place')->where('place_id', 2)->get();
-      //  //setar essas condicoes no front end
-      //  //dd($devices);
-      // foreach($devices as $device)
-      //{
-      //   echo $device->description;
-      //   echo '<br/>';
-      //}
-
-      $occurrences = $this->occurrence->paginate(10);
-      //dd($occurrences);
+       $occurrences = $this->occurrence->paginate(10);
       return view('admin.occurrences.index', compact('occurrences'));
     }
 
@@ -54,9 +39,9 @@ class OcurrenceController extends Controller
       //dd($devices);
      //add os outros campos no create e no edit
 
+     
 
-
-       $occurrence = \App\Occurrence::all(['id', 'place_id', 'device_id', 'user_id']);
+       $occurrence = \App\Occurrence::all(['id','user_id', 'occurrence_type_id', 'device_id', 'solution', 'obs', 'status', 'place_id']);
        return view('admin.occurrences.create', compact('occurrence', 'places', 'devices', 'users', 'occurrencestype'));
     }
 
@@ -67,14 +52,19 @@ class OcurrenceController extends Controller
     {
       try
       {
-          dd($request);
+        //dd($request);
         $data = $request->all();
-         dd($data);
-        //$occurrence = new occurrence;
-       // $occurrence->description = $data['description'];
-        //$occurrence->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
+        //dd($data);
+        $occurrence = new occurrence;
+        $occurrence->user_id = $data['user_id'];
+        $occurrence->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
+        $occurrence->occurrence_type_id = $data['occurrence_type_id'];
+        $occurrence->device_id = $data['device_id'];
+        $occurrence->solution = $data['solution'];
+        $occurrence->obs = $data['obs'];
+        $occurrence->status = $data['status'];
 
-        //$occurrence->save();
+        $occurrence->save();
 
         flash('Equipamento cadastrado com sucesso')->success();
         return redirect()->route('admin.occurrences.index');
@@ -88,14 +78,19 @@ class OcurrenceController extends Controller
 
     }
 
-    public function edit($id)
+    public function edit($occurrence)
     {
-       $places = \App\Place::pluck('description', 'id')->all();
+      //$places = \App\Place::pluck('description', 'id')->all();
+       $places = Place::all('id', 'description');
        //dd($places);
-       $occurrence = \App\occurrence::findOrFail($id);
+       $devices = Device::all(['id', 'description']);
+      //  $users = User::all(['id', 'name']);
+       $occurrencestype = OccurrenceType::all(['id', 'description']);
+       //dd($places);
+       $occurrence = \App\occurrence::findOrFail($occurrence);
        //dd($occurrence);
+       return view('admin.occurrences.edit', compact('occurrence', 'places', 'devices', 'occurrencestype'));
 
-       return view('admin.occurrences.edit', compact('occurrence'));
     }
 
     public function update(occurrenceRequest $request, $id)
@@ -103,18 +98,19 @@ class OcurrenceController extends Controller
        try
        {
          $data = $request->all();
-
+         //dd($data);
          $occurrence = occurrence::find($id);
-
-         $occurrence->description = $data['description'];
-         $occurrence->save();
-
+      
+ 
+         $occurrence->update($data);
          flash('Equipamento atualizado com sucesso')->success();
          return redirect()->route('admin.occurrences.index');
        }
        catch (\Throwable $th)
        {
          throw $th;
+         flash('erro')->warning();
+         return redirect()->route('admin.occurrences.index');
        }
     }
 
@@ -124,7 +120,7 @@ class OcurrenceController extends Controller
        //dd($occurrence);
        $occurrence->delete();
 
-       flash('Usuário Deletado com sucesso')->success();
+       flash('Ocorrência Deletada com sucesso')->success();
        return redirect()->route('admin.occurrences.index');
     }
 }

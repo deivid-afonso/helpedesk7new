@@ -39,7 +39,7 @@ class OcurrenceController extends Controller
       //dd($devices);
      //add os outros campos no create e no edit
 
-     
+
 
        $occurrence = \App\Occurrence::all(['id','user_id', 'occurrence_type_id', 'device_id', 'solution', 'obs', 'status', 'place_id']);
        return view('admin.occurrences.create', compact('occurrence', 'places', 'devices', 'users', 'occurrencestype'));
@@ -66,7 +66,7 @@ class OcurrenceController extends Controller
 
         $occurrence->save();
 
-        flash('Equipamento cadastrado com sucesso')->success();
+        flash('Ocorrência cadastrada com sucesso')->success();
         return redirect()->route('admin.occurrences.index');
 
       }
@@ -100,10 +100,10 @@ class OcurrenceController extends Controller
          $data = $request->all();
          //dd($data);
          $occurrence = occurrence::find($id);
-      
- 
+
+
          $occurrence->update($data);
-         flash('Equipamento atualizado com sucesso')->success();
+         flash('Ocorrência atualizada com sucesso')->success();
          return redirect()->route('admin.occurrences.index');
        }
        catch (\Throwable $th)

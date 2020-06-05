@@ -9,6 +9,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.occurrences.index');
+       // return view('welcome');
     }
 }

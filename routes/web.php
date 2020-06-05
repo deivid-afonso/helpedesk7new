@@ -2,20 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 
-
-//Route::resource('Place', 'LabsController');
 
 
 // $user = new \App\User(); //add user  modo active record
@@ -27,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
  //tste rota adm
 
-
-
 // Route::prefix('admin')->namespace('Admin')->group(function(){
 //     Route::prefix('users')->group(function(){
 //         Route::get('/', 'UserController@index')->name('admin.users.index');
@@ -37,14 +23,10 @@ use Illuminate\Support\Facades\Route;
 //         Route::get('/{user}/edit', 'UserController@edit')->name('admin.users.edit');
 //         Route::post('/update{user}', 'UserController@update')->name('admin.users.update');
 //         Route::post('/destroy{user}', 'UserController@destroy')->name('admin.users.destroy');
-
-
 //     });
 // });
 
- Route::get('/', function () {
-    return view('welcome');
-});
+ Route::get('/',  'HomeController@index')->name('home');
 
 Auth::routes();
 

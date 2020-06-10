@@ -18,10 +18,12 @@ class OcurrenceController extends Controller
     public function __construct(occurrence $occurrence)
     {
        $this->occurrence = $occurrence;
+       //$this->middleware(['role:nome','permission:nome', 'can:permission']); //for example
     }
 
     public function index()
     {
+        //para você conseguir usar o $this->middleware('role:Admin') ou permission:Editar algo ou can:editar algo
         //->where('status', '<>', 1)
        $occurrences = $this->occurrence->where('user_id', auth()->user()->id)->paginate(10); //lista somente ocorrencias do user
 

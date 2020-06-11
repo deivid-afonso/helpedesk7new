@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
 @section('content')
     <h1>Atualizar tipo ocorrencia</h1>
     <form action="{{route('admin.occurrencestype.update', $occurrencetype->id)}}" method="POST">

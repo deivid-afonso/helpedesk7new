@@ -8,9 +8,9 @@ class Place extends Model
 {
     protected $fillable = ['description'];
 
-    public function device()
+    public function devices()
     {
-        return $this->hasMany(Device::class,'device_id','id');
+        return $this->hasMany(Device::class,'place_id','id');
 
     }
 }

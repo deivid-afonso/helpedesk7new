@@ -20,6 +20,8 @@ class OcurrenceController extends Controller
     public function __construct(occurrence $occurrence)
     {
        $this->occurrence = $occurrence;
+       $this->middleware(['auth', 'role:Admin']);
+
     }
 
     public function index()

@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
 @section('content')
     <h1>Criar Laboratório</h1>
 <form action="{{route('admin.places.store')}}" method="POST">

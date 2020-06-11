@@ -10,4 +10,18 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+   
+    public function root()
+    {
+        if(auth()->user()->hasRole('Admin'))
+        {   
+
+            return redirect('admin/occurrences');
+        }
+        else if(auth()->user()->hasRole('User'))
+        {
+            return redirect()->route('user.occurrence.index');
+        }
+    }
 }

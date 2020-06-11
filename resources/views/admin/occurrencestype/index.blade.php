@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
 @section('content')
 <a href="{{route('admin.occurrencestype.create')}}" class="btn btn-lg btn-success">Criar Tipo de Ocorrência</a>
 <table class="table table-striped">

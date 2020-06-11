@@ -1,7 +1,6 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
 @section('content')
-<a href="{{route('occurrences.create')}}" class="btn btn-lg btn-success">Criar Ocorrência</a>
+<a href="{{route('user.occurrence.create')}}" class="btn btn-lg btn-success">Criar Ocorrência</a>
 <table class="table table-striped">
     <thead>
         <tr>

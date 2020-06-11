@@ -18,7 +18,7 @@ class OcurrenceController extends Controller
     public function __construct(occurrence $occurrence)
     {
        $this->occurrence = $occurrence;
-       //$this->middleware(['role:nome','permission:nome', 'can:permission']); //for example
+       $this->middleware(['auth', 'role:User']);
     }
 
     public function index()
@@ -70,7 +70,7 @@ class OcurrenceController extends Controller
         $occurrence->save();
 
         flash('Ocorrência cadastrada com sucesso')->success();
-        return redirect()->route('occurrences.index');
+        return redirect()->route('user.occurrence.index');
 
       }
       catch (\Throwable $th)
@@ -107,13 +107,13 @@ class OcurrenceController extends Controller
 
          $occurrence->update($data);
          flash('Ocorrência atualizada com sucesso')->success();
-         return redirect()->route('occurrences.index');
+         return redirect()->route('user.occurrence.index');
        }
        catch (\Throwable $th)
        {
          throw $th;
          flash('erro')->warning();
-         return redirect()->route('occurrences.index');
+         return redirect()->route('user.occurrence.index');
        }
     }
 
@@ -124,6 +124,6 @@ class OcurrenceController extends Controller
        $occurrence->delete();
 
        flash('Ocorrência Deletada com sucesso')->success();
-       return redirect()->route('occurrences.index');
+       return redirect()->route('user.occurrence.index');
     }
 }

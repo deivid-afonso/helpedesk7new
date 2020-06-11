@@ -26,29 +26,28 @@ use Illuminate\Support\Facades\Route;
 //     });
 // });
 
- Route::get('/',  'HomeController@index')->name('home');
+ Route::get('/', 'Auth\loginController@showLoginForm')->name('login');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'Controller@root')->name('home');
 
-Route::group(['middleware'=> ['auth']], function()
-{
+Route::group(['as'=> 'user.'], function(){
+    Route::resource('occurrence', 'OcurrenceController');//default
 
-    Route::resource('occurrences', 'OcurrenceController');//default
-
-    Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
-
-        Route::resource('users', 'UserController');
-
-        Route::resource('occurrences', 'OcurrenceController');
-
-        Route::resource('devices', 'DeviceController');
-
-        Route::resource('places', 'PlaceController');
-
-        Route::resource('occurrencestype', 'OccurrenceTypeController');
-    });
+});
 
 
+
+Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function(){
+
+    Route::resource('users', 'UserController');
+
+    Route::resource('occurrences', 'OcurrenceController');
+
+    Route::resource('devices', 'DeviceController');
+
+    Route::resource('places', 'PlaceController');
+
+    Route::resource('occurrencestype', 'OccurrenceTypeController');
 });

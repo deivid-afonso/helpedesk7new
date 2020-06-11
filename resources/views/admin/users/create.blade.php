@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
 @section('content')
     <h1>Criar User</h1>
 <form action="{{route('admin.users.store')}}" method="POST">
@@ -34,6 +33,18 @@
                     {{$message}}
                 </div>
             @enderror
+        </div>
+
+        <div class="form-group">
+            <label>Tipo User</label>
+            <select name="role_id" class="form-control">
+
+
+                @foreach ($roles as $role)
+                    <option value="{{$role->id}}">{{$role->name}} </option>
+                 @endforeach
+            </select>
+
         </div>
         
         <div class="form-group">

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Http\Requests\UserRequest;
+use Spatie\Permission\Traits\HasRoles;
 
 class UserController extends Controller
 {
@@ -31,8 +32,10 @@ class UserController extends Controller
     public function create()
     {
       $users = \App\User::all(['id', 'name', 'email', 'password']);
+      $roles = \Spatie\Permission\Models\Role::all();
+      //dd($role);
 
-      return view('admin.users.create', compact('users'));
+      return view('admin.users.create', compact('users', 'roles'));
     }
 
     public function store(UserRequest $request)
@@ -41,12 +44,24 @@ class UserController extends Controller
       {
        // $user =auth()->user();//tras os dados do user, usar depois no user default pra gravar os chamados no
 
-        $data = $request->all();
-        $user = new user;
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = $data['password'];
-        $user->save();
+       User::create($request->all())->roles()->attach($request->role_id);
+        // $data = $request->all();
+        // $user = new user;
+        // $user->name = $data['name'];
+        // $user->email = $data['email'];
+        // $user->password = $data['password'];
+        // $user->save();
+
+        // $model_has_roles = new model_has_roles;
+        // $model_has_roles->role_id = $data['role_id'];
+        // $model_has_roles->model_type ='App\User';
+        // $model_has_roles->model_id = $user->id;
+        // dd($model_has_roles);
+        // $model_has_roles->save();
+
+        
+
+        //$role->
 
         flash('Usuário criado com sucesso')->success();
       return redirect()->route('admin.users.index');
@@ -61,9 +76,11 @@ class UserController extends Controller
 
     public function edit($user)
     {
+      $roles = auth()->user()->roles->pluck(['role_id']);
+      dd($roles);
       $user = \App\User::findOrFail($user);
         //dd($user);
-      return view('admin.users.edit', compact('user'));
+      return view('admin.users.edit', compact('user', 'roles'));
     }
 
     public function update(UserRequest $request, $id)

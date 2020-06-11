@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('layouts.front')
 @section('content')
     <h1>Criar Tipo Ocorrencia</h1>
 <form action="{{route('admin.occurrencestype.store')}}" method="POST">

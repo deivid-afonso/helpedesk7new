@@ -12,7 +12,7 @@ use App\Http\Requests\DeviceRequest;
 class DeviceController extends Controller
 {
    private $device;
-   
+
 
    public function __construct(Device $device)
    {
@@ -21,28 +21,30 @@ class DeviceController extends Controller
 
    public function index()
    {
-     
-     //dd($lab_list);
-     $devices = $this->device->paginate(10);
+    // $occurrences = $this->occurrence->paginate(10);
+    // return view('admin.occurrences.index', compact('occurrences'));
+    // $devices = \App\Device::paginate(10);
 
+     $devices = $this->device->paginate(10);
+     //dd($devices);
      return view('admin.devices.index', compact('devices'));
    }
 
    public function create()
    {
       $places = Place::all('id', 'description');//lista places
-      
+
       //dd($places);
       $device = \App\Device::all(['id', 'description', 'patrimony', 'place_id']);
       return view('admin.devices.create', compact('device', 'places'));
    }
 
-   
+
 
 
    public function store(DeviceRequest $request)
    {
-     try 
+     try
      {
        $data = $request->all();
       //  dd($data);
@@ -52,18 +54,18 @@ class DeviceController extends Controller
        $device->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
 
        $device->save();
-      
+
        //$device->$places()->sync($data['places']);
 
        flash('Equipamento cadastrado com sucesso')->success();
        return redirect()->route('admin.devices.index');
 
-     } 
+     }
      catch (\Throwable $th)
      {
        throw $th;
      }
-    
+
    }
 
    public function edit($device)
@@ -76,10 +78,10 @@ class DeviceController extends Controller
 
    public function update(DeviceRequest $request, $id)
    {
-      try 
+      try
       {
         $data = $request->all();
-       
+
         $device = device::find($id);
 
         $device->description = $data['description'];
@@ -89,11 +91,11 @@ class DeviceController extends Controller
 
        //$device->$places()->sync($data['places']);
 
- 
+
         flash('Equipamento atualizado com sucesso')->success();
         return redirect()->route('admin.devices.index');
       }
-      catch (\Throwable $th) 
+      catch (\Throwable $th)
       {
         throw $th;
       }
@@ -101,15 +103,15 @@ class DeviceController extends Controller
 
    public function destroy($device)
    {
-      try 
+      try
       {
         $device = \App\Device::findOrFail($device);
         $device->delete();
 
       flash('Equipamento Deletado com sucesso')->success();
       return redirect()->route('admin.devices.index');
-      } 
-      catch (\Throwable $th) 
+      }
+      catch (\Throwable $th)
       {
         flash('Equipamento não pode ser deletado')->success();
         return redirect()->route('admin.devices.index');

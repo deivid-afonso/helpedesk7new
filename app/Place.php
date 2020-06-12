@@ -10,7 +10,7 @@ class Place extends Model
 
     public function devices()
     {
-        return $this->hasMany(Device::class,'place_id','id');
+        return $this->hasMany(Device::class,'device_id','id');
 
     }
 }

@@ -8,7 +8,7 @@
 			<th>Descrição</th>
 			<th>Patrimonio</th>
 			<th>Laboratório</th>
-			
+
 			<th>Menu</th>
         </tr>
     </thead>
@@ -19,7 +19,9 @@
             <td>{{ $device->description}}</td>
             <td>{{ $device->patrimony}}</td>
             <td>{{ $device->place->description}}</td>
-            
+            {{-- <td>{{$occurrence->device->description}}</td> --}}
+
+
             <td>
                 <div class="btn-group">
                   <a href="{{route('admin.devices.edit', ['device'=> $device->id])}}" class="btn btn-sm btn-primary">EDITAR</a>

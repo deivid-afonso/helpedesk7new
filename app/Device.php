@@ -9,14 +9,14 @@ use App\Place;
 
 class Device extends Model
 {
-    protected $fillable = [ 
+    protected $fillable = [
         'description', 'patrimony', 'place_id'
     ];
 
     public function place()//lab
-    { 
-        return $this->belongsTo(Place::class,'id','place_id');
-        
+    {
+        return $this->belongsTo(Place::class,'place_id','id');
+
     }
 
 }

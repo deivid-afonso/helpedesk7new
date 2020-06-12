@@ -27,7 +27,7 @@ class OcurrenceController extends Controller
     public function index()
     {
        $occurrences = $this->occurrence->paginate(10);
-      return view('admin.occurrences.index', compact('occurrences'));
+       return view('admin.occurrences.index', compact('occurrences'));
     }
 
     public function create()

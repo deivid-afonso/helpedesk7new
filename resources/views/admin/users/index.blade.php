@@ -7,7 +7,7 @@
             <th>#</th>
 			<th>Nome</th>
 			<th>E-mail </th>
-			{{-- <th>permissao </th> --}}
+			<th>permissao </th>
 			<th>Menu</th>
         </tr>
     </thead>
@@ -17,7 +17,11 @@
             <td>{{ $user->id}}</td>
             <td>{{ $user->name}}</td>
             <td>{{ $user->email}}</td>
-            
+            <td>{{ $user->viewRole}}</td>
+            <td>
+
+            </td>
+
             <td>
               <div class="btn-group">
                 <a href="{{route('admin.users.edit', ['user'=> $user->id])}}" class="btn btn-sm btn-primary">EDITAR</a>

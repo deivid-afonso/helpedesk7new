@@ -16,7 +16,8 @@ class DeviceController extends Controller
 
    public function __construct(Device $device)
    {
-      $this->device = $device;
+    $this->middleware(['auth', 'role:Admin']);
+    $this->device = $device;
    }
 
    public function index()

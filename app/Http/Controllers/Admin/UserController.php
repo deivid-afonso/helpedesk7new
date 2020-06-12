@@ -19,6 +19,8 @@ class UserController extends Controller
 
     public function __construct(user $user)
     {
+      $this->middleware(['auth', 'role:Admin']);
+
        $this->user = $user;
     }
     public function index()

@@ -14,6 +14,8 @@ class PlaceController extends Controller
 
     public function __construct(place $place)
     {
+       $this->middleware(['auth', 'role:Admin']);
+
        $this->place = $place;
     }
  

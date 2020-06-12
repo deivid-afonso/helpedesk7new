@@ -14,6 +14,8 @@ class OccurrenceTypeController extends Controller
 
   public function __construct(occurrencetype $occurrencetype)
   {
+    $this->middleware(['auth', 'role:Admin']);
+
      $this->occurrencetype = $occurrencetype;
   }
 

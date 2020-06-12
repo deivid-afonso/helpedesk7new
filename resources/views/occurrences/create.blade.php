@@ -29,12 +29,30 @@
 
         <div class="form-group">
             <label>device</label>
-            <select id="device" name="device_id" class="form-control">
-
+            <select id="device" name="device_id" class="form-control @error('device_id') is-invalid @enderror" value="{{old('device_id')}}">
                
             </select>
+            @error('device_id')
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
+           
 
         </div>
+
+        {{-- <div class="form-group">
+            <label>Patrimonio</label>
+            <input type="text" name="patrimony" class="form-control @error('patrimony') is-invalid @enderror" value="{{old('patrimony')}}">
+
+            @error('patrimony')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+            @enderror
+        </div> --}}
+
+
 
 
         <div class="form-group">
@@ -73,7 +91,8 @@
             })
            
         }).catch(function (){
-            $('#device').empty()
+            // $('#device').empty()
+            return "";
         });
     });
 </script>

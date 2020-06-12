@@ -24,8 +24,8 @@ class OccurrenceRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'occurrence_type_id' => ['required'],
-            // 'device_id' => ['required'],
+             'occurrence_type_id' => ['required'],
+             'device_id' => ['required'],
            
         ];
     }

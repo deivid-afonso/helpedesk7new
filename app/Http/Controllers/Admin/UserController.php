@@ -60,13 +60,10 @@ class UserController extends Controller
         // $model_has_roles->model_id = $user->id;
         // dd($model_has_roles);
         // $model_has_roles->save();
-
-        
-
         //$role->
 
         flash('Usuário criado com sucesso')->success();
-      return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index');
 
       }
       catch (\Throwable $th)
@@ -78,10 +75,10 @@ class UserController extends Controller
 
     public function edit($user)
     {
-      $roles = auth()->user()->roles->pluck(['role_id']);
-      dd($roles);
+      //$roles = user($user)->roles->pluck('name');
+      $user->getPermissionsViaRoles();
+      dd($user);
       $user = \App\User::findOrFail($user);
-        //dd($user);
       return view('admin.users.edit', compact('user', 'roles'));
     }
 
@@ -90,15 +87,18 @@ class UserController extends Controller
 
       try
       {
-        $data = $request->all();
-        //dd($data);
 
-        $user = User::find($id);
-        //dd($user);
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = $data['password'];
-        $user->save();
+        User::sync($request->all())->roles()->attach($request->role_id);
+
+        // $data = $request->all();
+        // //dd($data);
+
+        // $user = User::find($id);
+        // //dd($user);
+        // $user->name = $data['name'];
+        // $user->email = $data['email'];
+        // $user->password = $data['password'];
+        // $user->save();
 
         flash('Usuário atualizado com sucesso')->success();
         return redirect()->route('admin.users.index');

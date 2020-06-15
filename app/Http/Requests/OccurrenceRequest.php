@@ -26,15 +26,15 @@ class OccurrenceRequest extends FormRequest
         return [
              'occurrence_type_id' => ['required'],
              'device_id' => ['required'],
-           
+
         ];
     }
     public function messages()
     {
         return[
-            
+
             'required' => 'Campo obrigatório',
-           
+
 
         ];
     }

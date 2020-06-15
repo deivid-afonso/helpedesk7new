@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Place;
-use App\Http\Requests\OccurrenceRequest;
 use App\User;
 use App\Occurrence;
 use App\OccurrenceType;
@@ -19,7 +18,7 @@ class OcurrenceController extends Controller
 
     public function __construct(occurrence $occurrence)
     {
-      
+
        $this->occurrence = $occurrence;
        $this->middleware(['auth', 'role:Admin']);
 
@@ -51,7 +50,7 @@ class OcurrenceController extends Controller
 
 
 
-    public function store(occurrenceRequest $request)
+    public function store(Request $request)
     {
       try
       {
@@ -96,7 +95,7 @@ class OcurrenceController extends Controller
 
     }
 
-    public function update(occurrenceRequest $request, $id)
+    public function update(Request $request, $id)
     {
        try
        {

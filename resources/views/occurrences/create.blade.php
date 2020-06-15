@@ -30,14 +30,14 @@
         <div class="form-group">
             <label>device</label>
             <select id="device" name="device_id" class="form-control @error('device_id') is-invalid @enderror" value="{{old('device_id')}}">
-               
+
             </select>
             @error('device_id')
             <div class="invalid-feedback">
                 {{$message}}
             </div>
             @enderror
-           
+
 
         </div>
 
@@ -66,7 +66,7 @@
             @enderror
         </div>
 
-       
+
 
         <div class="form-group">
             <button type="submit" class="btn btn-lg btn-success">Criar Ocorrência</button>
@@ -85,14 +85,14 @@
         var device_id = $(this).val();
         $.get('/api/place/' + device_id ).done(function (result) {
             $('#device').empty()
-            
+
             result.forEach(function (item){
                 addOption(item.id, item.description)
             })
-           
+
         }).catch(function (){
-            // $('#device').empty()
-            return "";
+             $('#device').empty()
+            //return "";
         });
     });
 </script>

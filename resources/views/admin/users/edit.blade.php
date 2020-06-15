@@ -37,14 +37,12 @@
 
         <div class="form-group">
             <label>Tipo user</label>
-            <select name="role_id" class="form-control" >
+             <select name="role_id" class="form-control" >
 
                 @foreach ($roles as $role)
-                    <option value="{{$role->id}}" {{($role->id == auth()->user->roles->role_id) ? "selected" : ""}}>{{$role->name}}</option>
-                    {{-- <option value="{{$role->id}}">{{$role->name}} </option> --}}
+                    <option value="{{$role->id}}" {{($user->roles[0]->id == $role->id) ? 'selected' : ''}}>{{$role->name}}</option>
                  @endforeach
             </select>
-
         </div>
 
         <div class="form-group">

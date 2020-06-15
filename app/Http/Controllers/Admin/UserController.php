@@ -34,7 +34,7 @@ class UserController extends Controller
     public function create()
     {
       $users = \App\User::all(['id', 'name', 'email', 'password']);
-      $roles = \Spatie\Permission\Models\Role::all();
+      $roles = \Spatie\Permission\Models\Role::all();//tava dessa forma aqui pra listar os roles..sss ai no editar como puxo o id q ta salvo
       //dd($role);
 
       return view('admin.users.create', compact('users', 'roles'));
@@ -44,7 +44,6 @@ class UserController extends Controller
     {
       try
       {
-       // $user =auth()->user();//tras os dados do user, usar depois no user default pra gravar os chamados no
 
        User::create($request->all())->roles()->attach($request->role_id);
         // $data = $request->all();
@@ -60,7 +59,8 @@ class UserController extends Controller
         // $model_has_roles->model_id = $user->id;
         // dd($model_has_roles);
         // $model_has_roles->save();
-        //$role->
+        //$role->//
+
 
         flash('Usuário criado com sucesso')->success();
         return redirect()->route('admin.users.index');
@@ -75,9 +75,10 @@ class UserController extends Controller
 
     public function edit($user)
     {
-      //$roles = user($user)->roles->pluck('name');
-      $user->getPermissionsViaRoles();
-      dd($user);
+      //entao no edit eu listo todos os roles, tem gente falando aqui do lado...ta, ate ai tranquilo entao
+      $roles = \Spatie\Permission\Models\Role::all();
+
+
       $user = \App\User::findOrFail($user);
       return view('admin.users.edit', compact('user', 'roles'));
     }
@@ -88,10 +89,12 @@ class UserController extends Controller
       try
       {
 
-        User::sync($request->all())->roles()->attach($request->role_id);
+        //User::update($request->all())->roles()->attach($request->role_id);
 
-        // $data = $request->all();
-        // //dd($data);
+        // $data = $request->all(); é synb ou update, ta, eu vo pegar la, pra ver certinho, por hora vlw ai ja matou o q eu precisava
+        //document exist pivot / sync documentation
+
+        // //dd($data);t
 
         // $user = User::find($id);
         // //dd($user);

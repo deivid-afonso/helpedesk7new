@@ -15,7 +15,7 @@ class Device extends Model
 
     public function place()//lab
     {
-        return $this->belongsTo(Place::class,'place_id','id');
+        return $this->belongsTo(Place::class,'place_id','id');//teste
 
     }
 

@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function edit($user)
     {
-      //entao no edit eu listo todos os roles, tem gente falando aqui do lado...ta, ate ai tranquilo entao
+
       $roles = \Spatie\Permission\Models\Role::all();
 
 
@@ -88,20 +88,21 @@ class UserController extends Controller
 
       try
       {
+//        $user->roles()->updateExistingPivot($roleId, $attributes);
+//        User::update($request->all())->roles()->assignRole($request->role_id);
+//          User::find($id)->roles()->updateExistingPivot($roleId, $attributes);roles
+//         é synb ou update, ta, eu vo pegar la, pra ver certinho, por hora vlw ai ja matou o q eu precisava
+//        document exist pivot / sync documentation
 
-        //User::update($request->all())->roles()->attach($request->role_id);
-
-        // $data = $request->all(); é synb ou update, ta, eu vo pegar la, pra ver certinho, por hora vlw ai ja matou o q eu precisava
-        //document exist pivot / sync documentation
-
-        // //dd($data);t
-
-        // $user = User::find($id);
-        // //dd($user);
-        // $user->name = $data['name'];
-        // $user->email = $data['email'];
-        // $user->password = $data['password'];
-        // $user->save();
+         //dd($data);t
+         $data = $request->all();
+         $user = User::find($id);
+         //dd($user);
+         $user->name = $data['name'];
+         $user->email = $data['email'];
+         $user->password = $data['password'];
+         //$user->$role->role_id = $data['role_id']; verificar como editar o role do user
+         $user->save();
 
         flash('Usuário atualizado com sucesso')->success();
         return redirect()->route('admin.users.index');

@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-<a href="{{route('admin.devices.create')}}" class="btn btn-lg btn-success">Criar device</a>
+<a href="{{route('admin.devices.create')}}" class="btn btn-lg btn-success">Cadastrar Equipamento</a>
 <table class="table table-striped">
     <thead>
         <tr>

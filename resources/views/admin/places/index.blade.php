@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-<a href="{{route('admin.places.create')}}" class="btn btn-lg btn-success">Criar Lab</a>
+<a href="{{route('admin.places.create')}}" class="btn btn-lg btn-success">Cadastrar Laboratório</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -14,7 +14,7 @@
         <tr>
             <td>{{ $place->id}}</td>
             <td>{{ $place->description}}</td>
-         
+
             <td>
                 <div class="btn-group">
                   <a href="{{route('admin.places.edit', ['place'=> $place->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
@@ -25,11 +25,11 @@
                   </form>
                 </div>
               </td>
-        </tr> 
-        @endforeach   
-      
+        </tr>
+        @endforeach
+
     </tbody>
-    
+
 
 </table>
 

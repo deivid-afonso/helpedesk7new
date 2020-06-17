@@ -11,17 +11,23 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-   
+
     public function root()
     {
         if(auth()->user()->hasRole('Admin'))
-        {   
-
+        {
+            dd('entrou admin');
             return redirect('admin/occurrences');
         }
         else if(auth()->user()->hasRole('User'))
         {
+            dd('entrou user');
             return redirect()->route('user.occurrence.index');
+        }
+        else
+        {
+            dd('login');
+            return redirect()->route(login);
         }
     }
 }

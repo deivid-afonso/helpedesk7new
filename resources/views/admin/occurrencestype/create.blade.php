@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-    <h1>Criar Tipo Ocorrencia</h1>
+    <h1>Criar Tipo Ocorrência</h1>
 <form action="{{route('admin.occurrencestype.store')}}" method="POST">
         {{-- pra gravar usar metodo store conforme acima --}}
         @csrf
@@ -14,11 +14,11 @@
                 </div>
             @enderror
         </div>
-        
-    
-        
+
+
+
         <div class="form-group">
             <button type="submit" class="btn btn-lg btn-success">Criar Tipo Ocorrência</button>
         </div>
     </form>
-@endsection    
+@endsection

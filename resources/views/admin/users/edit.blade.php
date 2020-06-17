@@ -37,7 +37,7 @@
 
         <div class="form-group">
             <label>Tipo user</label>
-             <select name="role_id" class="form-control" >
+             <select disabled name="role_id" class="form-control" >
 
                 @foreach ($roles as $role)
                     <option value="{{$role->id}}" {{($user->roles[0]->id == $role->id) ? 'selected' : ''}}>{{$role->name}}</option>

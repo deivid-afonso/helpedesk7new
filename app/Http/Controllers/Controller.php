@@ -16,7 +16,7 @@ class Controller extends BaseController
     {
         if(auth()->user()->hasRole('Admin'))
         {
-            dd('entrou admin');
+            //dd('entrou admin');
             return redirect('admin/occurrences');
         }
         else if(auth()->user()->hasRole('User'))
@@ -26,8 +26,9 @@ class Controller extends BaseController
         }
         else
         {
+           // return back()->withInput();
             dd('login');
-            return redirect()->route(login);
+            return redirect()->route('login');
         }
     }
 }

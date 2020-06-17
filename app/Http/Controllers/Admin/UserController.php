@@ -94,6 +94,8 @@ class UserController extends Controller
 //         é synb ou update, ta, eu vo pegar la, pra ver certinho, por hora vlw ai ja matou o q eu precisava
 //        document exist pivot / sync documentation
 
+// syncRoles $user->syncRoles($role_id);
+
          //dd($data);t
          $data = $request->all();
          $user = User::find($id);

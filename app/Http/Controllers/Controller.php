@@ -21,14 +21,14 @@ class Controller extends BaseController
         }
         else if(auth()->user()->hasRole('User'))
         {
-            dd('entrou user');
+            //dd('entrou user');
             return redirect()->route('user.occurrence.index');
         }
-        else
-        {
-           // return back()->withInput();
-            dd('login');
-            return redirect()->route('login');
-        }
+        // else
+        // {
+        //    // return back()->withInput();
+        //     dd('login');
+        //     return redirect()->route('login');
+        // }
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-<a href="{{route('admin.occurrences.create')}}" class="btn btn-lg btn-success">Criar Ocorrência</a>
+{{--<a href="{{route('admin.occurrences.create')}}" class="btn btn-lg btn-success">Criar Ocorrência</a>--}}
 <table class="table table-striped">
     <thead>
         <tr>
@@ -33,8 +33,7 @@
             <td >
                 @if ($occurrence->status == 'resolvido')
                     {{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}
-                @else
-                aberto
+
                 @endif
 
             </td>

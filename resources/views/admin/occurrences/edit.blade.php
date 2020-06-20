@@ -55,7 +55,16 @@
 
         <div class="form-group">
             <label>status</label>
-            <input type="text" name="status" class="form-control  @error('status') is-invalid @enderror" value="{{$occurrence->status}}">
+{{--            <input type="text" name="status" class="form-control  @error('status') is-invalid @enderror" value="{{$occurrence->status}}">--}}
+
+
+            <select name="status" class="form-control" >
+
+                <option  value="Em atendimento" selected>Em atendimento</option>
+                <option  value="resolvido" >resolvido</option>
+
+
+            </select>
 
             @error('status')
                 <div class="invalid-feedback">

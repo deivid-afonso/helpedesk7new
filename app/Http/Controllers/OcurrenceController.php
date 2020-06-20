@@ -59,13 +59,13 @@ class OcurrenceController extends Controller
         $data = $request->all();
         $occurrence = new occurrence;
         $occurrence->user_id = auth()->user()->id; //grava o user autenticado
-        //dd($occurrence);
+
         $occurrence->place_id = $data['place_id']; // esse valor deve vir de algum select depois ... nao se esqueca
         $occurrence->occurrence_type_id = $data['occurrence_type_id'];
         $occurrence->device_id = $data['device_id'];
         // $occurrence->solution = $data['solution'];
         $occurrence->obs = $data['obs'];
-        // $occurrence->status = $data['status'];
+        $occurrence->status = 'Aberto';
 
         $occurrence->save();
 

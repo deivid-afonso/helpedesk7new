@@ -33,32 +33,11 @@
             <td >
                 @if ($occurrence->status == 'resolvido')
                     {{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}
-                @else
-                aberto
+
                 @endif
 
             </td>
 
-            {{-- <td>
-
-                @if ($occurrence->status == 'resolvido')
-                <a href="" class="btn btn-sm btn-dark">Fechado</a>
-
-                @else
-                <div class="btn-group">
-                    <a href="{{route('admin.occurrences.edit', ['occurrence'=> $occurrence->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
-                    <form action="{{route('admin.occurrences.destroy', ['occurrence' => $occurrence->id])}}" method="post">
-                        em tese esse metodo ocorrencias nao devem ser apagadas
-                        @csrf
-                        @method("DELETE")
-                        <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
-                    </form>
-                </div>
-
-                @endif
-
-
-            </td> --}}
         </tr>
         @endforeach
     </tbody>

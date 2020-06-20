@@ -88,22 +88,13 @@ class UserController extends Controller
 
       try
       {
-//        $user->roles()->updateExistingPivot($roleId, $attributes);
-//        User::update($request->all())->roles()->assignRole($request->role_id);
-//          User::find($id)->roles()->updateExistingPivot($roleId, $attributes);roles
-//         é synb ou update, ta, eu vo pegar la, pra ver certinho, por hora vlw ai ja matou o q eu precisava
-//        document exist pivot / sync documentation
-
-// syncRoles $user->syncRoles($role_id);
-
-         //dd($data);t
+//
          $data = $request->all();
          $user = User::find($id);
          //dd($user);
          $user->name = $data['name'];
          $user->email = $data['email'];
          $user->password = $data['password'];
-         //$user->$role->role_id = $data['role_id']; verificar como editar o role do user
          $user->save();
 
         flash('Usuário atualizado com sucesso')->success();

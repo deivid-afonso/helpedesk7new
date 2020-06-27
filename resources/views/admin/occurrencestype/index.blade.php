@@ -14,23 +14,23 @@
         <tr>
             <td>{{ $occurrencestype->id}}</td>
             <td>{{ $occurrencestype->description}}</td>
-           
+
             <td>
                 <div class="btn-group">
                   <a href="{{route('admin.occurrencestype.edit', ['occurrencestype'=> $occurrencestype->id])}}" class="btn btn-sm btn-primary">EDITAR</a>
                   <form action="{{route('admin.occurrencestype.destroy', ['occurrencestype' => $occurrencestype->id])}}" method="post">
                       @csrf
                       @method("DELETE")
-                      <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
+                      <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Gostaria de apagar o registro {{$occurrencestype->id}}?')">REMOVER</button>
                   </form>
                 </div>
               </td>
 
-        </tr> 
+        </tr>
         @endforeach
-      
+
     </tbody>
-    
+
 
 </table>
 

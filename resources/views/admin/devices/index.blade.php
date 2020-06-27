@@ -28,7 +28,7 @@
                   <form action="{{route('admin.devices.destroy', ['device' => $device->id])}}" method="post">
                       @csrf
                       @method("DELETE")
-                      <button type="submit" class="btn btn-sm btn-danger">REMOVER</button>
+                      <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Gostaria de apagar o registro {{$device->id}}?')">REMOVER</button>
                   </form>
                 </div>
               </td>

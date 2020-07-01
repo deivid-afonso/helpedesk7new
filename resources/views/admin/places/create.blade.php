@@ -1,24 +1,34 @@
 @extends('layouts.front')
 @section('content')
-    <h1>Criar Laboratório</h1>
-<form action="{{route('admin.places.store')}}" method="POST">
-        {{-- pra gravar usar metodo store conforme acima --}}
-        @csrf
-        <div class="form-group">
-            <label>Descrição</label>
-            <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" value="{{old('description')}}">
-
-            @error('description')
-                <div class="invalid-feedback">
-                    {{$message}}
+<section class="section">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-6">
+                <h1 class="title is-4 has-text-centered">Criar Laboratório</h1>
+                <div class="box">
+                    <form action="{{route('admin.places.store')}}" method="POST">
+                        {{-- pra gravar usar metodo store conforme acima --}}
+                        @csrf
+                        <div class="field">
+                            <label class="label">Descrição</label>
+                            <div class="control is-expanded">
+                                <input type="text" name="description" class="input @error('description') is-invalid @enderror" value="{{old('description')}}">
+                            </div>
+                            @error('description')
+                                <p class="has-text-danger">
+                                    {{$message}}
+                                </p>
+                            @enderror
+                        </div>
+                        <div class="field">
+                            <div class="control is-expanded">
+                                <button type="submit" class="button is-success is-fullwidth">Criar Device</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            @enderror
+            </div>
         </div>
-        
-    
-        
-        <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-success">Criar Device</button>
-        </div>
-    </form>
+    </div>
+</section>
 @endsection    

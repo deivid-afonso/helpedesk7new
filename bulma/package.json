@@ -72,7 +72,7 @@
     "deploy": "npm run clean && npm run build && npm run rtl",
     "rtl": "npm run rtl-sass && npm run rtl-autoprefix && npm run rtl-cleancss",
     "rtl-autoprefix": "postcss --use autoprefixer --map false --output css/helpdeskBulma.css css/helpdeskBulma.css",
-    "rtl-cleancss": "cleancss -o ../resources/css/helpdeskBulma.min.css css/helpdeskBulma.css",
+    "rtl-cleancss": "cleancss -o ../public/assets/css/helpdeskBulma.min.css css/helpdeskBulma.css",
     "rtl-sass": "node-sass --output-style expanded --source-map true helpdeskBulma.scss css/helpdeskBulma.css",
     "start": "npm run build-sass -- --watch"
   },

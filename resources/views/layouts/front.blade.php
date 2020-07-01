@@ -6,148 +6,122 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fatec Jaú Helpdesk</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <style>
-        .front.row {
-            margin-bottom: 40px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/css/helpdeskBulma.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/fonts.css')}}">
 </head>
-<body>
+<body id="app">
     {{-- @dd(auth()->user()->roles) --}}
-@if(auth()->check() && auth()->user()->hasRole('Admin'))
-      
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 40px;">
+<header>
+    <nav class="navbar is-dark">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{{route('home')}}">
+                <span class="tag is-black is-size-7 has-text-weight-bold">
+                    <span class="has-text-danger">Fatec</span>&nbsp
+                    Helpdesk
+                </span>
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="navbar-menu">
+            <div class="navbar-start">
+                @if(auth()->check() && auth()->user()->hasRole('Admin'))
+                    @auth
+                    <a class="navbar-item @if(request()->is('admin/users*')) active @endif "
+                        href="{{route('admin.users.index')}}">
+                        Usuários
+                    </a>
+                    <a class="navbar-item @if(request()->is('admin/devices*')) active @endif"
+                        href="{{route('admin.devices.index')}}">
+                        Equipamentos
+                    </a>
+                    <a class="navbar-item @if(request()->is('admin/places*')) active @endif"
+                        href="{{route('admin.places.index')}}">
+                        Laboratórios
+                    </a>
+                    <a class="navbar-item @if(request()->is('admin/occurrencestype*')) active @endif"
+                        href="{{route('admin.occurrencestype.index')}}">
+                        Tipo Ocorrência
+                    </a>
+                    <a class="navbar-item @if(request()->is('admin/occurrences*')) active @endif"
+                        href="{{route('admin.occurrences.index')}}">
+                        Ocorrências
+                    </a>
+                    {{-- <ul class="navbar-nav mr-auto">
+                        <li class="navbar-item @if(request()->is('admin/stores*')) active @endif">
+                            <a class="nav-link" href="{{route('admin.stores.index')}}">Lojas <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="navbar-item @if(request()->is('admin/products*')) active @endif">
+                            <a class="nav-link" href="{{route('admin.products.index')}}">Produtos</a>
+                        </li>
+                        <li class="navbar-item @if(request()->is('admin/categories*')) active @endif">
+                            <a class="nav-link" href="{{route('admin.categories.index')}}">Categorias</a>
+                        </li>
+                    </ul> --}}
+                    @endauth
+                @endif
 
-            <a class="navbar-brand" href="{{route('home')}}">Fatec Helpdesk</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                {{-- <ul class="navbar-nav mr-auto">
-                    <li class="nav-item @if(request()->is('/')) active @endif">
-                        <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul> --}}
-
-            @auth
-
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item @if(request()->is('admin/users*')) active @endif ">
-                    <a class="nav-link" href="{{route('admin.users.index')}}">Usuários <span class="sr-only">(current)</span></a>
-                    </li>
-
-                    <li class="nav-item @if(request()->is('admin/devices*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.devices.index')}}">Equipamentos <span class="sr-only">(current)</span></a>
-                    </li>
-
-                    <li class="nav-item @if(request()->is('admin/places*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.places.index')}}">Laboratórios <span class="sr-only">(current)</span></a>
-                    </li>
-
-                    <li class="nav-item @if(request()->is('admin/occurrencestype*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.occurrencestype.index')}}">Tipo Ocorrência <span class="sr-only">(current)</span></a>
-                    </li>
-
-                    <li class="nav-item @if(request()->is('admin/occurrences*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.occurrences.index')}}">Ocorrências <span class="sr-only">(current)</span></a>
-                    </li>
-
-
-                </ul>
-                {{-- <ul class="navbar-nav mr-auto">
-                            <li class="nav-item @if(request()->is('admin/stores*')) active @endif">
-                                <a class="nav-link" href="{{route('admin.stores.index')}}">Lojas <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item @if(request()->is('admin/products*')) active @endif">
-                                <a class="nav-link" href="{{route('admin.products.index')}}">Produtos</a>
-                            </li>
-                            <li class="nav-item @if(request()->is('admin/categories*')) active @endif">
-                                <a class="nav-link" href="{{route('admin.categories.index')}}">Categorias</a>
-                            </li>
-                        </ul> --}}
-
-                        <div class="my-2 my-lg-0">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#" onclick="event.preventDefault();
-                                                                        document.querySelector('form.logout').submit(); ">Sair</a>
-
-                                    <form action="{{route('logout')}}" class="logout" method="POST" style="display:none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                                <li class="nav-item">
-                                    <span class="nav-link">{{auth()->user()->name}}</span>
-                                </li>
-                            </ul>
-                        </div>
-                @endauth
-
+                @if (auth()->check() && auth()->user()->hasRole('User'))
+                    @auth
+                        <a class="navbar-item @if(request()->is('user/occurrence*'))
+                            active @endif" href="{{route('user.occurrence.index')}}">
+                            Ocorrências
+                        </a>
+                    @endauth
+                @endif
             </div>
-        </nav>
-    @endif
-
-    @if (auth()->check() && auth()->user()->hasRole('User'))
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom: 40px;">
-
-        <a class="navbar-brand" href="{{route('home')}}">Fatec Helpdesk</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            {{-- <ul class="navbar-nav mr-auto">
-                <li class="nav-item @if(request()->is('/')) active @endif">
-                    <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
-                </li>
-            </ul> --}}
-
-        @auth
-
-            <ul class="navbar-nav mr-auto">
-          
-                <li class="nav-item @if(request()->is('user/occurrence*')) active @endif">
-                <a class="nav-link" href="{{route('user.occurrence.index')}}">Ocorrências <span class="sr-only">(current)</span></a>
-                </li>
-
-
-            </ul>
-         
-
-                    <div class="my-2 my-lg-0">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" onclick="event.preventDefault();
-                                                                    document.querySelector('form.logout').submit(); ">Sair</a>
-
-                                <form action="{{route('logout')}}" class="logout" method="POST" style="display:none;">
-                                    @csrf
-                                </form>
-                            </li>
-                            <li class="nav-item">
-                                <span class="nav-link">{{auth()->user()->name}}</span>
-                            </li>
-                        </ul>
-                    </div>
-            @endauth
-
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <span class="nav-link">{{auth()->user()->name}}</span>
+                </div>
+                <a class="navbar-item has-text-weight-bold has-text-warning" href="#"
+                    onclick="event.preventDefault();
+                    document.querySelector('form.logout').submit(); ">
+                    Sair
+                </a>
+                <form action="{{route('logout')}}" class="logout is-hidden" method="POST">
+                    @csrf
+                </form>
+            </div>
         </div>
     </nav>
-    @endif
-   
-    
-
-
-<div class="container">
+</header>
+<main id="app-content" class="has-background-light">
     @include('flash::message')
     @yield('content')
     <script src="{{asset('js/app.js')}}"></script>
     @yield('post-script')
-</div>
+</main>
+<footer class="footer has-background-dark is-paddingless">
+    <div class="content">
+        <div class="columns is-marginless">
+            <div class="column">
+                <p class="title is-7 has-text-white">FATEC © 2020</p>
+            </div>
+            <div class="column">
+                <p class="has-text-centered has-text-dark">
+                    <a class="has-text-dark" href="https://github.com/deivid-afonso" target="_blank">
+                        By D3ivid
+                    </a>
+                    <a class="has-text-dark" href="https://github.com/jvitorfrancisco" target="_blank">
+                        & JvitorFr4ancisco
+                    </a>
+                </p>
+            </div>
+            <div class="column">
+                <p class="has-text-white-bis title is-7 has-text-right">
+                    Made by <span class="has-text-danger">Students</span> with
+                    <span style="fill: red; margin-top:2px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z"/></svg>
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

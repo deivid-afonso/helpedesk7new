@@ -51,8 +51,6 @@
         <div class="form-group">
             <label>device</label>
             <select name="device_id" class="form-control">
-
-
                 @foreach ($devices as $device)
                     <option value="{{$device->id}}">{{$device->description}} </option>
                  @endforeach

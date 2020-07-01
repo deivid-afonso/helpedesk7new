@@ -1,0 +1,10 @@
+#app {
+    display:flex;
+    min-height:100vh;
+    align-items: center;
+   }
+#app-content {
+    flex: 1;
+    min-width: 70vh;
+    margin-top: -10vh;
+}

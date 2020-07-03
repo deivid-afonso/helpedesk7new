@@ -108,12 +108,6 @@ class PlaceController extends Controller
 
             return false;
         }
-//        catch (Throwable $e)
-//        {
-//            flash('Lugar não pode ser deletado, pois existem equipamentos cadastrados')->warning();
-//
-//        }
-
 
         Alert::success('Laboratório removido com sucesso', 'Success Message');
 

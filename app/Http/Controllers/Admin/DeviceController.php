@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Device;
 use App\Place;
 use App\Http\Requests\DeviceRequest;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DeviceController extends Controller
 {
@@ -58,7 +58,8 @@ class DeviceController extends Controller
 
        //$device->$places()->sync($data['places']);
 
-       flash('Equipamento cadastrado com sucesso')->success();
+       Alert::success('Equipamento criado com sucesso', 'Success Message');
+
        return redirect()->route('admin.devices.index');
 
      }
@@ -93,7 +94,8 @@ class DeviceController extends Controller
        //$device->$places()->sync($data['places']);
 
 
-        flash('Equipamento atualizado com sucesso')->success();
+       Alert::success('Equipamento atualizado com sucesso', 'Success Message');
+
         return redirect()->route('admin.devices.index');
       }
       catch (\Throwable $th)
@@ -109,7 +111,8 @@ class DeviceController extends Controller
         $device = \App\Device::findOrFail($device);
         $device->delete();
 
-      flash('Equipamento Deletado com sucesso')->success();
+        Alert::success('Equipamento deletado com sucesso', 'Success Message');
+
       return redirect()->route('admin.devices.index');
       }
       catch (\Throwable $th)

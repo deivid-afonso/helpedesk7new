@@ -4,37 +4,35 @@
 <section class="section">
     <div class="container">
         <div class="columns is-centered">
-            <div class="column">
-                <h2 class="title is-3 has-text-centered">Lista de ocorrências</h2>
-                <div class="box">
-                    <div class="columns is-centered">
-                        <div class="column is-narrow">
-                            <button class="button" type="button">Filtros x Y Z</button>
-                        </div>
-                        <div class="column is-narrow">
-                            <button class="button" type="button">Filtros x Y Z</button>
-                        </div>
-                        <div class="column is-narrow">
-                            <button class="button" type="button">Filtros x Y Z</button>
-                        </div>
-                    </div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                {{-- <th>User</th> --}}
-                                <th>Lab</th>
-                                <th>Computador</th>
-                                <th>Status</th>
-                                <th>Tipo Ocorrência</th>
-                                <th>Solução</th>
-                                <th>Obs</th>
-                                <th>data de abertura</th>
-                                <th>data fechamento</th>
-                                <th>Opções</th>
+            <div class="column is-narrow">
+                <button class="button" type="button">Filtros x Y Z</button>
+            </div>
+            <div class="column is-narrow">
+                <button class="button" type="button">Filtros x Y Z</button>
+            </div>
+            <div class="column is-narrow">
+                <button class="button" type="button">Filtros x Y Z</button>
+            </div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column is-narrow-desktop">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                             <th>User</th>
+                            <th>Lab</th>
+                            <th>Computador</th>
+                            <th>Status</th>
+                            <th>Tipo Ocorrência</th>
+                            <th>Solução</th>
+                            <th>Obs</th>
+                            <th>data de abertura</th>
+                            <th>data fechamento</th>
+                            <th>Opções</th>
 
-                            </tr>
-                        </thead>
+                        </tr>
+                    </thead>
                         <tbody>
                             @foreach($occurrences as $occurrence)
                             <tr>

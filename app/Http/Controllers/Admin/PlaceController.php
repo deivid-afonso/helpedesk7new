@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Place;
 use App\Http\Requests\PlaceRequest;
+use mysql_xdevapi\Exception;
 
 class PlaceController extends Controller
 {
     private $place;
-   
+
 
     public function __construct(place $place)
     {
@@ -18,15 +19,15 @@ class PlaceController extends Controller
 
        $this->place = $place;
     }
- 
+
     public function index()
     {
-     
+
       $places = \App\Place::paginate(10);
-      
+
       return view('admin.places.index', compact('places'));
     }
- 
+
 
     public function create()
     {
@@ -34,58 +35,58 @@ class PlaceController extends Controller
        $places = \App\Place::all(['id', 'description']);
        return view('admin.places.create', compact('places'));
     }
- 
-    
- 
- 
+
+
+
+
     public function store(PlaceRequest $request)
     {
-      try 
+      try
       {
         $data = $request->all();
-        
+
         $place = new place;
-    
+
         $place->description = $data['description'];
-     
+
         $place->save();
-     
+
         flash('Lugar cadastrado com sucesso')->success();
         return redirect()->route('admin.places.index');
- 
-      } 
+
+      }
       catch (\Throwable $th)
       {
         throw $th;
       }
-     
+
     }
- 
+
     public function edit($place)
     {
        $place = $this->place->findOrFail($place);
        return view('admin.places.edit', compact('place'));
     }
- 
+
     public function update(PlaceRequest $request, $place)
     {
 
         try
         {
           $data = $request->all();
-          //dd($id); 
-         
+          //dd($id);
+
           $place = Place::findOrFail($place);
-  
-          
+
+
           $place->description = $data['description'];
           $place->save();
 
 
             flash('Lugar cadastrado com sucesso')->success();
             return redirect()->route('admin.places.index');
-        } 
-        catch (\Throwable $th) 
+        }
+        catch (\Throwable $th)
         {
             throw $th;
             flash('Erro, não cadastrado')->warning();
@@ -93,18 +94,35 @@ class PlaceController extends Controller
 
 
         }
-      
+
     }
- 
+
     public function destroy($place)
     {
-       $place = \App\Place::findOrFail($place);
-       //dd($place);
-       $place->delete();
- 
+        try
+        {
+            $place = \App\Place::findOrFail($place);
+            //dd($place);
+            $place->delete();
+
+        }
+        catch (Throwable $e) {
+            dd($place);
+
+            report($e);
+
+            return false;
+        }
+//        catch (Throwable $e)
+//        {
+//            flash('Lugar não pode ser deletado, pois existem equipamentos cadastrados')->warning();
+//
+//        }
+
+
        flash('Lugar Deletado com sucesso')->success();
        return redirect()->route('admin.places.index');
     }
 
-    
+
 }

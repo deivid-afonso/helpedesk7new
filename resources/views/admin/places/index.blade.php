@@ -3,15 +3,15 @@
 
 <section class="section">
     <div class="container">
-        <h1 class="title is-4 has-text-centered">Laboratórios</h1>
-        <div class="columns">
-            <div class="column">
-                <a href="{{route('admin.places.create')}}" class="button is-warning">Cadastrar Laboratório</a>
-            </div>
-        </div>
+        <h1 class="title is-3 has-text-centered">Laboratórios</h1>
         <div class="columns is-centered">
             <div class="column">
                 <div class="box">
+                    <div class="columns">
+                        <div class="column">
+                            <a href="{{route('admin.places.create')}}" class="button is-warning">Cadastrar Laboratório</a>
+                        </div>
+                    </div>
                     <table class="table table-striped is-fullwidth has-text-centered">
                         <thead>
                             <tr>

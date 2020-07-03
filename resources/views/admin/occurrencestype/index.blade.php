@@ -5,6 +5,7 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-6">
+                <h2 class="title is-3 has-text-centered">Tipos de ocorrências</h2>
                 <div class="box">
                     <div class="columns">
                         <div class="column is-narrow">

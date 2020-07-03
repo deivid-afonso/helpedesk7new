@@ -3,14 +3,15 @@
 
 <section class="section">
     <div class="container">
-        <div class="column">
-            <div class="column is-narrow">
-                <a href="{{route('admin.devices.create')}}" class="button is-warning">Cadastrar Equipamento</a>
-            </div>
-        </div>
         <div class="columns is-centered">
             <div class="column">
+                <h2 class="title is-3 has-text-centered">Equipamentos</h2>
                 <div class="box">
+                    <div class="columns">
+                        <div class="column is-narrow">
+                            <a href="{{route('admin.devices.create')}}" class="button is-warning">Cadastrar Equipamento</a>
+                        </div>
+                    </div>
                     <table class="table table-striped is-fullwidth has-text-centered">
                         <thead>
                             <tr>

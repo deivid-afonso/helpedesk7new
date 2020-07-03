@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/helpdeskBulma.min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/fonts.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/icons.css')}}">
 </head>
 <body id="app">
     {{-- @dd(auth()->user()->roles) --}}

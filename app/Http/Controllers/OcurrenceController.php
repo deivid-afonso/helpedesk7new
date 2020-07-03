@@ -26,8 +26,9 @@ class OcurrenceController extends Controller
         //para você conseguir usar o $this->middleware('role:Admin') ou permission:Editar algo ou can:editar algo
         //->where('status', '<>', 1)
        $occurrences = $this->occurrence->where('user_id', auth()->user()->id)->paginate(10); //lista somente ocorrencias do user
+       $places = Place::all('description');
 
-      return view('occurrences.index', compact('occurrences'));
+      return view('occurrences.index', compact('occurrences','places'));
     }
 
     public function create()

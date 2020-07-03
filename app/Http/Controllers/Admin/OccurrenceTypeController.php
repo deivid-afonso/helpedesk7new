@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\OccurrenceType;
 use App\Http\Requests\OccurrenceTypeRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OccurrenceTypeController extends Controller
 {
   private $occurrencetype;
-   
+
 
   public function __construct(occurrencetype $occurrencetype)
   {
@@ -31,34 +32,35 @@ class OccurrenceTypeController extends Controller
   {
 
      $occurrencestype = \App\OccurrenceType::all(['id', 'description']);
-     
+
      return view('admin.occurrencestype.create', compact('occurrencestype'));
   }
 
-  
+
 
 
   public function store(OccurrenceTypeRequest $request)
   {
-    try 
+    try
     {
       $data = $request->all();
-      
+
       $occurrencetype = new Occurrencetype;
-  
+
       $occurrencetype->description = $data['description'];
-   
+
       $occurrencetype->save();
-   
-      flash('tipo de ocorrência cadastrado com sucesso')->success();
+
+      Alert::success('Tipo de Ocorrencia criada com sucesso', 'Success Message');
+
       return redirect()->route('admin.occurrencestype.index');
 
-    } 
+    }
     catch (\Throwable $th)
     {
       throw $th;
     } //o link do menu vc vai chamar admin.ocurrencestype.create
-   
+
   }
 
   public function edit($occurrencetype)
@@ -66,7 +68,7 @@ class OccurrenceTypeController extends Controller
       $occurrencetype = \App\OccurrenceType::findOrFail($occurrencetype);
       //dd($occurrencetype);
       return view('admin.occurrencestype.edit', compact('occurrencetype'));
-    
+
   }
 
   public function update(OccurrenceTypeRequest $request, $occurrencetype)
@@ -75,27 +77,26 @@ class OccurrenceTypeController extends Controller
       try
       {
         $data = $request->all();
-        //dd($id); 
-       
+        //dd($id);
+
         $occurrencetype = OccurrenceType::findOrFail($occurrencetype);
 
-        
+
         $occurrencetype->description = $data['description'];
         $occurrencetype->save();
 
 
-          flash('Tipo de ocorrencia atualizada com sucesso')->success();
+            Alert::success('Tipo de Ocorrencia alterada com sucesso', 'Success Message');
+
           return redirect()->route('admin.occurrencestype.index');
-      } 
-      catch (\Throwable $th) 
+      }
+      catch (\Throwable $th)
       {
           throw $th;
           flash('Erro, não cadastrado')->warning();
           return redirect()->route('admin.occurrencestype.index');
-
-
       }
-    
+
   }
 
   public function destroy($occurrencetype)
@@ -104,8 +105,9 @@ class OccurrenceTypeController extends Controller
       $occurrencetype = \App\OccurrenceType::findOrFail($occurrencetype);
       //dd($occurrencetype);
       $occurrencetype->delete();
- 
-      flash('Tipo ocorrência Deletado com sucesso')->success();
+
+      Alert::success('Tipo de Ocorrencia deletada com sucesso', 'Success Message');
+
       return redirect()->route('admin.occurrencestype.index');
      } catch (\Throwable $th) {
       flash('Tipo ocorrência não pode ser deletado!')->warning();

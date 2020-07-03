@@ -9,7 +9,7 @@ use App\User;
 use App\Occurrence;
 use App\OccurrenceType;
 use App\Device;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OcurrenceController extends Controller
 {
@@ -27,7 +27,8 @@ class OcurrenceController extends Controller
     public function index()
     {
        $occurrences = $this->occurrence->paginate(10);
-       return view('admin.occurrences.index', compact('occurrences'));
+       $places = Place::all('description');
+       return view('admin.occurrences.index', compact('occurrences','places'));
     }
 
     public function create()
@@ -41,14 +42,9 @@ class OcurrenceController extends Controller
       //dd($devices);
      //add os outros campos no create e no edit
 
-
-
        $occurrence = \App\Occurrence::all(['id','user_id', 'occurrence_type_id', 'device_id', 'solution', 'obs', 'status', 'place_id']);
        return view('admin.occurrences.create', compact('occurrence', 'places', 'devices', 'users', 'occurrencestype'));
     }
-
-
-
 
     public function store(Request $request)
     {
@@ -68,7 +64,8 @@ class OcurrenceController extends Controller
 
         $occurrence->save();
 
-        flash('Ocorrência cadastrada com sucesso')->success();
+        Alert::success('Ocorrencia criada com sucesso', 'Success Message');
+
         return redirect()->route('admin.occurrences.index');
 
       }
@@ -105,7 +102,8 @@ class OcurrenceController extends Controller
 
 
          $occurrence->update($data);
-         flash('Ocorrência atualizada com sucesso')->success();
+         Alert::success('Ocorrencia editada com sucesso', 'Success Message');
+
          return redirect()->route('admin.occurrences.index');
        }
        catch (\Throwable $th)
@@ -122,7 +120,8 @@ class OcurrenceController extends Controller
        //dd($occurrence);
        $occurrence->delete();
 
-       flash('Ocorrência Deletada com sucesso')->success();
+       Alert::success('Ocorrencia removida com sucesso', 'Success Message');
+
        return redirect()->route('admin.occurrences.index');
     }
 }

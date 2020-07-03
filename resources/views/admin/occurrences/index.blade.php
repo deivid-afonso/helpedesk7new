@@ -20,7 +20,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            {{-- <th>User</th> --}}
+                             <th>User</th>
                             <th>Lab</th>
                             <th>Computador</th>
                             <th>Status</th>

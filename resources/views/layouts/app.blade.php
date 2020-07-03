@@ -11,7 +11,7 @@
 </head>
 <body id="app" class="has-background-light">
     <main id="app-content">
-        @include('flash::message')
+        @include('sweetalert::alert')
         @yield('content')
     </main>
 </body>

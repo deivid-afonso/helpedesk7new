@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Place;
 use App\Http\Requests\PlaceRequest;
-use mysql_xdevapi\Exception;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PlaceController extends Controller
 {
@@ -51,15 +51,15 @@ class PlaceController extends Controller
 
         $place->save();
 
-        flash('Lugar cadastrado com sucesso')->success();
+        Alert::success('Laboratório criado com sucesso', 'Success Message');
         return redirect()->route('admin.places.index');
 
       }
       catch (\Throwable $th)
       {
-        throw $th;
+        Alert::error('Ocorreu um erro ao criar o laboratório', 'Error Message');
+       return view('admin.places.create', compact('places'));
       }
-
     }
 
     public function edit($place)
@@ -70,31 +70,27 @@ class PlaceController extends Controller
 
     public function update(PlaceRequest $request, $place)
     {
-
         try
         {
-          $data = $request->all();
-          //dd($id);
+            $data = $request->all();
+            //dd($id);
 
-          $place = Place::findOrFail($place);
-
-
-          $place->description = $data['description'];
-          $place->save();
+            $place = Place::findOrFail($place);
 
 
-            flash('Lugar cadastrado com sucesso')->success();
+            $place->description = $data['description'];
+            $place->save();
+
+
+            Alert::success('Laboratório alterado com sucesso', 'Success Message');
             return redirect()->route('admin.places.index');
         }
         catch (\Throwable $th)
         {
             throw $th;
-            flash('Erro, não cadastrado')->warning();
+            Alert::error('Erro, não foi possível alterar', 'Erro Message');
             return redirect()->route('admin.places.index');
-
-
         }
-
     }
 
     public function destroy($place)
@@ -104,7 +100,6 @@ class PlaceController extends Controller
             $place = \App\Place::findOrFail($place);
             //dd($place);
             $place->delete();
-
         }
         catch (Throwable $e) {
             dd($place);
@@ -120,7 +115,8 @@ class PlaceController extends Controller
 //        }
 
 
-       flash('Lugar Deletado com sucesso')->success();
+        Alert::success('Laboratório removido com sucesso', 'Success Message');
+
        return redirect()->route('admin.places.index');
     }
 

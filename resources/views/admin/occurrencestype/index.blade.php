@@ -36,7 +36,6 @@
                                     </form>
                                     </div>
                                 </td>
-
                             </tr>
                             @endforeach
                         </tbody>
@@ -48,4 +47,7 @@
 </section>
 
 {{$occurrencestypes->links()}}
+@endsection
+@section('post-script')
+
 @endsection

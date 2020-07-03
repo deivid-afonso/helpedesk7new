@@ -91,10 +91,8 @@
     </nav>
 </header>
 <main id="app-content" class="has-background-light">
-    @include('flash::message')
+    @include('sweetalert::alert')
     @yield('content')
-    <script src="{{asset('js/app.js')}}"></script>
-    @yield('post-script')
 </main>
 <footer class="footer has-background-dark is-paddingless">
     <div class="content">
@@ -123,5 +121,6 @@
         </div>
     </div>
 </footer>
+@yield('post-script')
 </body>
 </html>

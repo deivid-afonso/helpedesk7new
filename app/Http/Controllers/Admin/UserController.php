@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use App\Http\Requests\UserRequest;
-use Spatie\Permission\Traits\HasRoles;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -46,29 +45,15 @@ class UserController extends Controller
       {
 
        User::create($request->all())->roles()->attach($request->role_id);
-        // $data = $request->all();
-        // $user = new user;
-        // $user->name = $data['name'];
-        // $user->email = $data['email'];
-        // $user->password = $data['password'];
-        // $user->save();
 
-        // $model_has_roles = new model_has_roles;
-        // $model_has_roles->role_id = $data['role_id'];
-        // $model_has_roles->model_type ='App\User';
-        // $model_has_roles->model_id = $user->id;
-        // dd($model_has_roles);
-        // $model_has_roles->save();
-        //$role->//
-
-
-        flash('Usuário criado com sucesso')->success();
+        Alert::success('Usuário criado com sucesso','Success Message');
         return redirect()->route('admin.users.index');
 
       }
       catch (\Throwable $th)
       {
-        throw $th;
+        Alert::error('Ocorreu um erro ao criar o usuário', 'Error Message');
+        return view('admin.users.create', compact('users', 'roles'));
       }
 
     }
@@ -97,12 +82,15 @@ class UserController extends Controller
          $user->password = $data['password'];
          $user->save();
 
-        flash('Usuário atualizado com sucesso')->success();
+         Alert::success('Usuário atualizado com sucesso','Success Message');
+
         return redirect()->route('admin.users.index');
       }
       catch (\Throwable $th)
       {
-        //throw $th;
+        Alert::error('Ocorreu um erro ao atualizar o usuário', 'Error Message');
+
+        return redirect()->route('admin.users.index');
       }
 
     }
@@ -113,7 +101,8 @@ class UserController extends Controller
       //dd($user);
       $user->delete();
 
-      flash('Usuário Deletado com sucesso')->success();
+      Alert::success('Usuário deletado com sucesso','Success Message');
+
       return redirect()->route('admin.users.index');
     }
 }

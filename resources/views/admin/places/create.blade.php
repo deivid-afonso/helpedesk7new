@@ -14,7 +14,7 @@
                             <div class="control is-expanded">
                                 <input type="text" name="description" class="input @error('description') is-invalid @enderror" value="{{old('description')}}">
                             </div>
-                            @error('description')
+                            @error('description')  
                                 <p class="has-text-danger">
                                     {{$message}}
                                 </p>

@@ -4,7 +4,7 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-6">
-                <h1 class="title is-4 has-text-centered">Criar Laboratório</h1>
+                <h1 class="title is-4 has-text-centered">Cadastrar Laboratório</h1>
                 <div class="box">
                     <form action="{{route('admin.places.store')}}" method="POST">
                         {{-- pra gravar usar metodo store conforme acima --}}

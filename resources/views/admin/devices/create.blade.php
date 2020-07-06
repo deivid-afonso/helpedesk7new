@@ -5,7 +5,7 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-6">
-                <h1 class="title is-4 has-text-dark has-text-centered">Criar Device</h1>
+                <h1 class="title is-4 has-text-dark has-text-centered">Cadastrar Equipamento</h1>
                 <div class="box">
                     <form action="{{route('admin.devices.store')}}" method="POST">
                         {{-- pra gravar usar metodo store conforme acima --}}

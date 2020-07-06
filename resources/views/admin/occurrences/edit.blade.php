@@ -79,7 +79,7 @@
                         <div class="columns">
                             <div class="column">
                                 <div class="field">
-                                    <label class="label">Solucao</label>
+                                    <label class="label">Solução</label>
                                     <div class="control">
                                         <textarea type="text" name="solution" class="textarea  @error('solution') is-invalid @enderror" value="{{$occurrence->solution}}"></textarea>
                                         @error('solution')

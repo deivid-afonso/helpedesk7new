@@ -52,15 +52,15 @@
                             <thead>
                                 <tr>
                                     {{-- <th>#</th> --}}
-                                    <th>User</th>
+                                    {{-- <th>User</th> --}}
                                     <th>Lab</th>
                                     <th>Computador</th>
                                     <th>Status</th>
                                     <th>Tipo Ocorrência</th>
-                                    {{-- <th>Solução</th> --}}
-                                    <th>Obs</th>
-                                    <th>data de abertura</th>
-                                    <th>data fechamento</th>
+                                     {{-- <th>Solução</th> --}}
+                                    {{-- <th>Obs</th> --}}
+                                    {{-- <th>data de abertura</th>
+                                    <th>data fechamento</th> --}}
                                     <th>Opções</th>
                                 </tr>
                             </thead>
@@ -68,23 +68,26 @@
                                 @foreach($occurrences as $occurrence)
                                 <tr class="occurrence" data-status="{{$occurrence->status}}" data-place="{{$occurrence->place->description}}">
                                     {{-- <td>{{$occurrence->id}}</td> --}}
-                                    <td>{{$occurrence->owner->name}}</td>
+                                    {{-- <td>{{$occurrence->owner->name}}</td --}}
                                     <td>{{$occurrence->place->description}}</td>
                                     <td>{{$occurrence->device->description}}</td>
                                     <td>{{$occurrence->status}}</td>
                                     <td>{{$occurrence->occurrencetype->description}}</td>
                                     {{-- <td>{{$occurrence->solution}}</td> --}}
-                                    <td>
+                                    {{-- <td>
                                         <b>Observações </b>{{$occurrence->obs}} <br>
                                         <b>Solução </b>{{$occurrence->solution}}
-                                    </td>
-                                    <td>{{\Carbon\Carbon::parse($occurrence->created_at)->format('d/m/Y')}}</td>
+                                    </td> --}}
+                                    {{-- <td>{{\Carbon\Carbon::parse($occurrence->created_at)->format('d/m/Y')}}</td>
                                     <td >
                                         @if ($occurrence->status == 'resolvido')
                                             {{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}
                                         @endif
-                                    </td>
+                                    </td> --}}
                                     <td>
+                                        <a href="{{route('admin.occurrences.show', ['occurrence'=> $occurrence->id])}}"
+                                            >Detalhes</i>
+                                        </a>
                                         @if ($occurrence->status == 'resolvido')
                                         <button type="button" class="button is-dark" disabled>
                                             <i class="icon-pencil-1"></i>
@@ -94,6 +97,7 @@
                                             class="button is-light"><i class="icon-pencil-1"></i>
                                         </a>
                                         @endif
+                                       
                                     </td>
                                 </tr>
                                 @endforeach

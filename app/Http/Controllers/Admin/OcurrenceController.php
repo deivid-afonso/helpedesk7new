@@ -124,4 +124,16 @@ class OcurrenceController extends Controller
 
        return redirect()->route('admin.occurrences.index');
     }
+
+    public function show($occurrence)
+    {
+       
+       $places = Place::all('id', 'description');
+       $devices = Device::all(['id', 'description']);
+       $occurrencestype = OccurrenceType::all(['id', 'description']);
+       $occurrence = \App\occurrence::findOrFail($occurrence);
+       return view('admin.occurrences.details', compact('occurrence', 'places', 'devices', 'occurrencestype'));
+
+    }
+    
 }

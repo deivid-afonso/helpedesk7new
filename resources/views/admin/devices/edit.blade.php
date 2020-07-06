@@ -5,7 +5,7 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-6">
-                <h1 class="title is-4 has-text-centered">Atualizar device</h1>
+                <h1 class="title is-4 has-text-centered">Atualizar Equipamento</h1>
                 <div class="box">
                     <form action="{{route('admin.devices.update', $device ?? ''->id)}}" method="POST">
                         {{-- pra gravar usar metodo store conforme acima --}}
@@ -42,7 +42,7 @@
                         </div>
                         <div class="field">
                             <div class="control is-expanded">
-                                <button type="submit" class="button is-success is-fullwidth">Atualizar device</button>
+                                <button type="submit" class="button is-success is-fullwidth">Atualizar Equipamento</button>
                             </div>
                         </div>
                     </form>

@@ -22,7 +22,7 @@
                         </div>
                         <div class="field">
                             <div class="control is-expanded">
-                                <button type="submit" class="button is-success is-fullwidth">Criar Device</button>
+                                <button type="submit" class="button is-success is-fullwidth">Criar Laboratório</button>
                             </div>
                         </div>
                     </form>

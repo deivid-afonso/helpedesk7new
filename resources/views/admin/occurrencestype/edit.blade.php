@@ -4,7 +4,7 @@
     <div class="container">
         <div class="columns is-centered">
             <div class="column is-narrow">
-                <h1 class="title is-3">Atualizar tipo ocorrencia</h1>
+                <h1 class="title is-3">Atualizar Tipo Ocorrência</h1>
                 <div class="box">
                     <form action="{{route('admin.occurrencestype.update', $occurrencetype->id)}}" method="POST">
                         {{-- pra gragar usar metodo store conforme acima --}}

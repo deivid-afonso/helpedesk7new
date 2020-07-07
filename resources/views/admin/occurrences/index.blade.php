@@ -14,9 +14,9 @@
                                 <div class="control">
                                     <div class="select">
                                         <select name="status" id="occurrence-status">
-                                            <option value="0">Todos</option>
-                                            <option value="1">Resolvido</option>
-                                            <option value="2">Em andamento</option>
+                                            <option value="">Todos</option>
+                                            <option value="resolvido">Resolvido</option>
+                                            <option value="Aberto">Em andamento</option>
                                         </select>
                                     </div>
                                 </div>
@@ -28,6 +28,7 @@
                                 <div class="control">
                                     <div class="select">
                                         <select name="" id="occurrence-place">
+                                            <option value="">Todos</option>
                                             @foreach ($places as $place)
                                                 <option value="{{$place->description}}">
                                                     {{$place->description}}

@@ -10,7 +10,11 @@
                     <form action="{{route('admin.occurrences.update', $occurrence ?? ''->id)}}" method="POST">
                         {{-- pra gragar usar metodo store conforme acima --}}
                         @csrf
+                        
                         @method("PUT")
+                        <div style="display: none">
+                            <input type="text" name="admin_id" value="{{auth()->user()->id}}">
+                        </div>
                         <div class="columns">
                             <div class="column">
                                 <div class="field">

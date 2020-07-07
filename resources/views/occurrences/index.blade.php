@@ -15,6 +15,7 @@
                             <tr>
                                 <th>#</th>
                                 <th style="display: none">User</th>
+                                <th>Atendido por</th>
                                 <th>Lab</th>
                                 <th>Computador</th>
                                 <th>Status</th>
@@ -32,6 +33,7 @@
                             <tr>
                                 <td>{{$occurrence->id}}</td>
                                 <td style="display: none">{{$occurrence->owner->name}}</td>
+                                <td>{{$occurrence->admin_id}}</td>
                                 <td>{{$occurrence->place->description}}</td>
                                 <td>{{$occurrence->device->description}}</td>
                                 <td>{{$occurrence->status}}</td>

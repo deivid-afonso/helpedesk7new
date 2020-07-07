@@ -7,6 +7,7 @@
                 <h1 class="title has-text-centered has-text-primary">Criar Ocorrência</h1>
                 <form action="{{route('user.occurrence.store')}}" method="POST">
                     @csrf
+                    
                     <div class="field">
                         <label class="label has-text-grey-dark">Tipo Ocorrência</label>
                         <div class="control is-expanded">
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                     <div class="field">
-                        <label class="label has-text-grey-dark">device</label>
+                        <label class="label has-text-grey-dark">Equipamento</label>
                         <div class="control is-expanded">
                             <div class="select is-fullwidth">
                                 <select id="device" name="device_id" class="form-control @error('device_id') is-invalid @enderror" value="{{old('device_id')}}">

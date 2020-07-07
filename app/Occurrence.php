@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Occurrence extends Model
 {
     protected $fillable = [
-        'user_id', 'occurrence_type_id', 'device_id', 'solution', 'obs', 'status'
+        'user_id', 'occurrence_type_id', 'device_id', 'solution', 'obs', 'status', 'admin_id'
     ];
     public $timestamps = true;
 

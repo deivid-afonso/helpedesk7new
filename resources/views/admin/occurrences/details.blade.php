@@ -12,6 +12,15 @@
                         @csrf
                         @method("PUT")
                         <div class="columns">
+                            <div class="column">
+                                <div class="field">
+                                    <label class="label">Atendido por</label>
+                                    <div class="control is-expanded">
+                                        <input disabled type="text" name="admin_id" class="input " value="{{$occurrence->admin_id}}">
+                                    </div>
+                                </div>
+                            </div>
+                            
 
                             <div class="column">
                                 <div class="field">

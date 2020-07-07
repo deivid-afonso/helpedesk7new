@@ -79,7 +79,8 @@ class OcurrenceController extends Controller
 
     public function edit($occurrence)
     {
-      //$places = \App\Place::pluck('description', 'id')->all();
+      //$admin_id = auth()->user()->id;
+      //dd($admin_id);
        $places = Place::all('id', 'description');
        //dd($places);
        $devices = Device::all(['id', 'description']);
@@ -99,7 +100,7 @@ class OcurrenceController extends Controller
          $data = $request->all();
          //dd($data);
          $occurrence = occurrence::find($id);
-
+        //dd($occurrence);
 
          $occurrence->update($data);
          Alert::success('Ocorrencia editada com sucesso', 'Success Message');

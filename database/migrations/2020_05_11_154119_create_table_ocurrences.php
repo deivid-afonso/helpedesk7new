@@ -20,7 +20,10 @@ class CreateTableOcurrences extends Migration
 			$table->unsignedBigInteger('user_id');
 			$table->unsignedBigInteger('occurrence_type_id');
 			$table->unsignedBigInteger('device_id');
-			$table->unsignedBigInteger('place_id');
+            $table->unsignedBigInteger('place_id');
+            
+			$table->unsignedBigInteger('admin_id')->nullable();
+
 
 			$table->string('solution', 200)->nullable();
 			$table->string('obs', 200)->nullable();

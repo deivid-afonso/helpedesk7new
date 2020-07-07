@@ -147,14 +147,15 @@
                                 <div class="field">
                                     <label class="label">fechado em</label>
                                     <div class="control is-expanded">
-                                        <input disabled type="text"  class="input " value="{{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}">
+                                        <input disabled type="text"  class="input" 
+                                        @if ($occurrence->status == 'resolvido')
+                                        value="{{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}"
+                                        @endif>
                                     </div>
                                 </div>
                             </div>
                         </div>
                             <a href="{{ url()->previous() }}">Voltar</a>
-
-                      
                         {{-- <button type="submit"  class="button is-success is-fullwidth">Return</button> --}}
                     </form>
                 </div>

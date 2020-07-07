@@ -45,7 +45,7 @@
                         </div>
                         <div class="field pt-4">
                             <div class="control is-expanded">
-                                <button type="submit" class="button is-success is-fullwidth">Criar Device</button>
+                                <button type="submit" class="button is-success is-fullwidth">Cadastrar Equipamento</button>
                             </div>
                         </div>
                     </form>

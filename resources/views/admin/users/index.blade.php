@@ -76,5 +76,5 @@
     </div>
 </section>
 
-<!-- {{$users->links()}} -->
+{{$users->links()}}
 @endsection

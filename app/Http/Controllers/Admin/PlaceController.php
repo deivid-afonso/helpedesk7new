@@ -58,6 +58,7 @@ class PlaceController extends Controller
       }
       catch (\Throwable $th)
       {
+        //dd($th);
         Alert::error('Ocorreu um erro ao criar o laboratório', 'Error Message');
        return view('admin.places.create', compact('places'));
       }

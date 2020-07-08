@@ -9,7 +9,8 @@ use App\User;
 use App\Occurrence;
 use App\OccurrenceType;
 use App\Device;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewOccurrenceOpenedEmail;
 class OcurrenceController extends Controller
 {
     private $occurrence;
@@ -67,8 +68,10 @@ class OcurrenceController extends Controller
         // $occurrence->solution = $data['solution'];
         $occurrence->obs = $data['obs'];
         $occurrence->status = 'Aberto';
-
+        $user = auth()->user()->name;
         $occurrence->save();
+
+        //Mail::to('peafonso@gmail.com.br')->send(new NewOccurrenceOpenedEmail($user));
 
         flash('Ocorrência cadastrada com sucesso')->success();
         return redirect()->route('user.occurrence.index');

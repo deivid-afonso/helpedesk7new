@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Place;
 use App\Device;
+use App\User;
 use App\Http\Requests\PlaceRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -33,6 +34,11 @@ class PlaceController extends Controller
     public function create()
     {
 
+      
+      $users = User::whereHas('roles', function($query) {
+        $query->where('name', 'Admin');
+        })->get();
+        dd($users);
        $places = \App\Place::all(['id', 'description']);
        return view('admin.places.create', compact('places'));
     }

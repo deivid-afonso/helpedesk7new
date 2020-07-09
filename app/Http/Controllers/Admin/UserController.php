@@ -43,7 +43,8 @@ class UserController extends Controller
     {
       try
       {
-
+        //$email = $request->all('email');
+        //dd($email);
        User::create($request->all())->roles()->attach($request->role_id);
 
         Alert::success('Usuário criado com sucesso','Success Message');

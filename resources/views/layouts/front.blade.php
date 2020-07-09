@@ -22,13 +22,13 @@
                     Helpdesk
                 </span>
             </a>
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="menu">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
         </div>
-        <div class="navbar-menu">
+        <div class="navbar-menu" id="menu">
             <div class="navbar-start">
                 @if(auth()->check() && auth()->user()->hasRole('Admin'))
                     @auth
@@ -123,5 +123,6 @@
     </div>
 </footer>
 @yield('post-script')
+<script src="{{asset('assets/js/main.js')}}"></script>
 </body>
 </html>

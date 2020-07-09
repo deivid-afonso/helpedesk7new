@@ -4,7 +4,7 @@
 <section class="section">
     <div class="container">
         <div class="columns is-centered">
-            <div class="column is-6">
+            <div class="column is-8-desktop is-6-fullhd">
                 <h2 class="title is-3 has-text-centered">Tipos de ocorrências</h2>
                 <div class="box">
                     <div class="columns">
@@ -15,7 +15,7 @@
                     <table class="table is-fullwidth table-striped">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th class="is-hidden-mobile">#</th>
                                 <th>Descrição</th>
                                 <th class="has-text-centered">Menu</th>
                             </tr>
@@ -23,16 +23,21 @@
                         <tbody>
                             @foreach($occurrencestypes as $occurrencestype)
                             <tr>
-                                <td>{{ $occurrencestype->id}}</td>
+                                <td class="is-hidden-mobile">{{ $occurrencestype->id}}</td>
                                 <td>{{ $occurrencestype->description}}</td>
 
                                 <td class="is-narrow">
                                     <div class="btn-group">
                                     <form action="{{route('admin.occurrencestype.destroy', ['occurrencestype' => $occurrencestype->id])}}" method="post">
-                                        <a href="{{route('admin.occurrencestype.edit', ['occurrencestype'=> $occurrencestype->id])}}" class="button is-small is-primary">EDITAR</a>
+                                        <a href="{{route('admin.occurrencestype.edit', ['occurrencestype'=> $occurrencestype->id])}}" class="button is-small is-light">
+                                            <i class="icon-pencil is-size-6"></i>
+                                        </a>
                                         @csrf
                                         @method("DELETE")
-                                        <button type="submit" class="button is-small is-danger" onclick="return confirm('Gostaria de apagar o registro {{$occurrencestype->id}}?')">REMOVER</button>
+                                        <button type="submit" class="button is-small is-danger"
+                                        onclick="return confirm('Gostaria de apagar o registro {{$occurrencestype->id}}?')">
+                                            <i class="icon-trash has-text-light is-size-6"></i>
+                                        </button>
                                     </form>
                                     </div>
                                 </td>
@@ -40,13 +45,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="columns is-centered">
+                        <div class="column is-narrow">
+                            {{$occurrencestypes->links()}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-{{$occurrencestypes->links()}}
 @endsection
 @section('post-script')
 

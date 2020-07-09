@@ -5,8 +5,13 @@
     <div class="container">
         <h1 class="title has-text-centered has-text-primary">Detalhes Ocorrência</h1>
         <div class="columns is-centered">
-            <div class="column is-6">
+            <div class="column is-8-desktop is-6-fullhd">
                 <div class="box">
+                    <div class="columns">
+                        <div class="column is-narrow">
+                            <a class="button is-danger is-fullwidth" href="{{ url()->previous() }}">Voltar</a>
+                        </div>
+                    </div>
                     <form action="{{route('admin.occurrences.update', $occurrence ?? ''->id)}}" method="POST">
                         {{-- pra gragar usar metodo store conforme acima --}}
                         @csrf
@@ -20,8 +25,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-
                             <div class="column">
                                 <div class="field">
                                     <label class="label">Id</label>
@@ -93,7 +96,7 @@
                                         <div class="select is-fullwidth">
                                             <select disabled name="status">
                                                 <option  value="{{$occurrence->status}}">{{$occurrence->status}}</option>
-                                                
+
                                             </select>
                                         </div>
                                     </div>
@@ -107,29 +110,13 @@
                         </div>
                         <div class="columns">
                             <div class="column">
-                                <div class="field">
-                                    <label class="label">Solução</label>
-                                    <div class="control">
-                                        <textarea disabled type="text" name="solution" class="textarea  @error('solution') is-invalid @enderror" value="{{$occurrence->solution}}"></textarea>
-                                        @error('solution')
-                                            <p class="has-text-danger">
-                                                {{$message}}
-                                            </p>
-                                        @enderror
-                                    </div>
-                                </div>
+                                <label class="label">Solução</label>
+                                <textarea disabled class="textarea">{{$occurrence->solution}}</textarea>
                             </div>
                             <div class="column">
                                 <div class="field">
                                     <label class="label">Observações</label>
-                                    <div class="control">
-                                        <textarea disabled type="text" name="obs" class="textarea  @error('obs') is-invalid @enderror" value="{{$occurrence->obs}}"></textarea>
-                                    </div>
-                                    @error('obs')
-                                        <p class="has-text-danger">
-                                            {{$message}}
-                                        </p>
-                                    @enderror
+                                    <textarea class="textarea" disabled>{{$occurrence->obs}}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -147,16 +134,14 @@
                                 <div class="field">
                                     <label class="label">fechado em</label>
                                     <div class="control is-expanded">
-                                        <input disabled type="text"  class="input" 
+                                        <input disabled type="text"  class="input"
                                         @if ($occurrence->status == 'resolvido')
-                                        value="{{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}"
+                                            value="{{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}"
                                         @endif>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                            <a href="{{ url()->previous() }}">Voltar</a>
-                        {{-- <button type="submit"  class="button is-success is-fullwidth">Return</button> --}}
                     </form>
                 </div>
             </div>

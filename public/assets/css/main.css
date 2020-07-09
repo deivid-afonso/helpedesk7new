@@ -1,3 +1,24 @@
+/* Helper classes */
+.has-shadow-1{
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.30);
+}
+.align-items-end{
+    align-items: flex-end;
+}
+.align-items-start{
+    align-items: flex-start;
+}
+.justify-end{
+    justify-content: flex-end;
+}
+.justify-center{
+    justify-content: center;
+}
+.justify-start{
+    justify-content: flex-start;
+}
+
+/* Styles */
 #app {
  display:flex;
  min-height:100vh;
@@ -10,4 +31,6 @@
 
 #login-container{
     height: 70vh;
+
 }
+

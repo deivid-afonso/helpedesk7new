@@ -40,9 +40,10 @@
                 </div>
             </div>
         </div>
+        {{$places->links()}}
     </div>
 </section>
 
 
-{{$places->links()}}
+
 @endsection

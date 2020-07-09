@@ -16,7 +16,13 @@ class CreateTablePlaces extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->string('description', 30);
+
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+           
+
+            $table->foreign('user_id')->references('id')->on('users');
+            
         });
     }
 

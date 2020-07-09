@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Place;
+use App\Device;
 use App\Http\Requests\PlaceRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -57,6 +58,7 @@ class PlaceController extends Controller
       }
       catch (\Throwable $th)
       {
+        //dd($th);
         Alert::error('Ocorreu um erro ao criar o laboratório', 'Error Message');
        return view('admin.places.create', compact('places'));
       }
@@ -95,23 +97,29 @@ class PlaceController extends Controller
 
     public function destroy($place)
     {
+      $device = \App\Device::all(['place_id'])->has($place);
+      
+
+      if (!$device) 
+      {
         try
         {
             $place = \App\Place::findOrFail($place);
-            //dd($place);
             $place->delete();
+            Alert::success('Laboratório removido com sucesso', 'Success Message');
+            return redirect()->route('admin.places.index');
         }
         catch (Throwable $e) {
-            dd($place);
-
             report($e);
 
-            return false;
+            
         }
-
-        Alert::success('Laboratório removido com sucesso', 'Success Message');
-
-       return redirect()->route('admin.places.index');
+      }
+      else
+      {
+        Alert::error('Não pode ser deletado!', 'Possui equipamentos cadastrados!');
+        return redirect()->route('admin.places.index');
+      } 
     }
 
 

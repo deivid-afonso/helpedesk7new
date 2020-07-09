@@ -9,6 +9,19 @@
                     <form action="{{route('admin.places.store')}}" method="POST">
                         {{-- pra gravar usar metodo store conforme acima --}}
                         @csrf
+                        {{-- <div class="field">
+                            <label class="label">User</label>
+                            <div class="control is-expanded">
+                                <div class="select is-fullwidth">
+                                    <select name="users">
+                                        @foreach ($users as $user)
+                                            <option value="{{$user->id}}">{{$user->name}} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div> --}}
+                        
                         <div class="field">
                             <label class="label">Descrição</label>
                             <div class="control is-expanded">

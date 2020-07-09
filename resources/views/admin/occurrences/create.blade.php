@@ -7,28 +7,14 @@
         <div class="form-group">
             <label>User</label>
             <select name="user_id" class="form-control">
-
-
                 @foreach ($users as $user)
                     <option value="{{$user->id}}">{{$user->name}} </option>
                  @endforeach
             </select>
-
         </div>
-
-        {{-- layout estado cidade
-            https://blog.schoolofnet.com/trabalhando-com-ajax-no-laravel/ --}}
-        {{-- {!! Form::label('estado', 'Estados:') !!}
-        {!! Form::select('estado', $estados) !!}
-
-        {!! Form::label('cidade', 'Cidades:') !!}
-        {!! Form::select('cidade', []) !!} --}}
-
         <div class="form-group">
             <label>Tipo Ocorrência</label>
             <select name="occurrence_type_id" class="form-control">
-
-
                 @foreach ($occurrencestype as $occurrence_type_id)
                     <option value="{{$occurrence_type_id->id}}">{{$occurrence_type_id->description}} </option>
                  @endforeach

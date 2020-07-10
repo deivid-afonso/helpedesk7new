@@ -115,10 +115,9 @@ class PlaceController extends Controller
             Alert::success('Laboratório removido com sucesso', 'Success Message');
             return redirect()->route('admin.places.index');
         }
-        catch (Throwable $e) {
+        catch (\Throwable $e) 
+        {
             report($e);
-
-            
         }
       }
       else
@@ -127,6 +126,5 @@ class PlaceController extends Controller
         return redirect()->route('admin.places.index');
       } 
     }
-
 
 }

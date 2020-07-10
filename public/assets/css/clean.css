@@ -5,6 +5,5 @@
    }
 #app-content {
     flex: 1;
-    min-width: 70vh;
     margin-top: -10vh;
 }

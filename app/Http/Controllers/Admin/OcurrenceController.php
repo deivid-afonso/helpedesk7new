@@ -26,7 +26,7 @@ class OcurrenceController extends Controller
 
     public function index()
     {
-       $occurrences = $this->occurrence->paginate(10);
+       $occurrences = $this->occurrence->orderBy('id','DESC')->paginate(10);
        $places = Place::all('description');
        return view('admin.occurrences.index', compact('occurrences','places'));
     }
@@ -128,7 +128,7 @@ class OcurrenceController extends Controller
 
     public function show($occurrence)
     {
-       
+
        $places = Place::all('id', 'description');
        $devices = Device::all(['id', 'description']);
        $occurrencestype = OccurrenceType::all(['id', 'description']);
@@ -136,5 +136,5 @@ class OcurrenceController extends Controller
        return view('admin.occurrences.details', compact('occurrence', 'places', 'devices', 'occurrencestype'));
 
     }
-    
+
 }

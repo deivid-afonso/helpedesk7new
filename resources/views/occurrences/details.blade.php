@@ -21,7 +21,8 @@
                                 <div class="field">
                                     <label class="label">Atendido por</label>
                                     <div class="control is-expanded">
-                                        <input disabled type="text" name="admin_id" class="input " value="{{$occurrence->admin_id}}">
+                                        {{var_dump($user)}}
+                                        <input disabled type="text" name="admin_id" class="input " value="{{$user->name}}">
                                     </div>
                                 </div>
                             </div> --}}

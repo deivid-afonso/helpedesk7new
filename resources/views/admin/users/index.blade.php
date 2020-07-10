@@ -17,17 +17,15 @@
                         <div class="column">
                             <div class="field">
                                 <div class="control is-expanded">
-                                    <input type="text" class="input">
+                                    <input id="user-search" type="text" class="input" placeholder="Digite para buscar usuário pelo nome">
                                 </div>
                             </div>
-                        </div>
-                        <div class="column is-narrow">
-                            <a href="" class="button is-link">Procurar</a>
                         </div>
                     </div>
                     <div class="columns is-multiline">
                         @foreach($users as $user)
-                            <div class="column is-half-tablet is-full-desktop mb-2 has-background-white-bis">
+                            <div class="user column is-half-tablet is-full-desktop mb-2 has-background-white-bis"
+                                data-name="{{ $user->name}}">
                                 <div class="columns is-multiline is-vcentered">
                                     <div class="column is-full-touch is-1-desktop">
                                         <div class="columns is-mobile">
@@ -78,3 +76,4 @@
 
 {{$users->links()}}
 @endsection
+<script src="{{ asset('assets/js/users/index.js')}}"></script>

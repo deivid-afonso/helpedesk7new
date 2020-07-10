@@ -27,7 +27,7 @@
                                 <div class="field">
                                     <label class="label">E-mail</label>
                                     <div class="control">
-                                        <input type="text" name="email" class="input @error('email') is-invalid @enderror"value="{{old('email')}}">
+                                        <input type="text" name="email" class="input @error('email') is-invalid @enderror"value="{{old('email')}}" required>
                                     </div>
                                     @error('email')
                                         <p class="has-text-danger">

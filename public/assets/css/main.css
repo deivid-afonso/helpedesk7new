@@ -26,11 +26,10 @@
 }
 #app-content {
  flex:1;
- min-height:70vh
+ min-height:70vw
 }
 
 #login-container{
     height: 70vh;
 
 }
-

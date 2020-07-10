@@ -34,11 +34,10 @@ class PlaceController extends Controller
     public function create()
     {
 
-      
+
       $users = User::whereHas('roles', function($query) {
         $query->where('name', 'Admin');
         })->get();
-        dd($users);
        $places = \App\Place::all(['id', 'description']);
        return view('admin.places.create', compact('places'));
     }
@@ -104,10 +103,7 @@ class PlaceController extends Controller
     public function destroy($place)
     {
       $device = \App\Device::all(['place_id'])->has($place);
-      
 
-      if (!$device) 
-      {
         try
         {
             $place = \App\Place::findOrFail($place);
@@ -115,16 +111,10 @@ class PlaceController extends Controller
             Alert::success('Laboratório removido com sucesso', 'Success Message');
             return redirect()->route('admin.places.index');
         }
-        catch (\Throwable $e) 
+        catch (\Throwable $e)
         {
-            report($e);
+            Alert::error('Não pode ser deletado!', 'Possui equipamentos cadastrados!');
+            return redirect()->route('admin.places.index');
         }
-      }
-      else
-      {
-        Alert::error('Não pode ser deletado!', 'Possui equipamentos cadastrados!');
-        return redirect()->route('admin.places.index');
-      } 
     }
-
 }

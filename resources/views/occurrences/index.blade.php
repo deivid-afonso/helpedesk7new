@@ -73,7 +73,7 @@
                                     Tipo
                                 </div>
                                 <div class="column is-narrow has-text-centered">
-                                    Editar / Visualizar
+                                    Visualizar
                                 </div>
                             </div>
                         </div>
@@ -102,16 +102,7 @@
                                         {{$occurrence->occurrencetype->description}}
                                     </div>
                                     <div class="column is-narrow is-hidden-touch">
-                                        @if ($occurrence->status == 'resolvido')
-                                        <button type="button" class="button is-light" disabled>
-                                            <i class="icon-pencil"></i>
-                                        </button>
-                                        @else
-                                        <a href="{{route('admin.occurrences.edit', ['occurrence'=> $occurrence->id])}}"
-                                            class="button is-light"><i class="icon-pencil"></i>
-                                        </a>
-                                        @endif
-                                        <a class="button is-warning" href="{{route('admin.occurrences.show', ['occurrence'=> $occurrence->id])}}">
+                                        <a class="button is-warning" href="{{route('user.occurrence.show', ['occurrence'=> $occurrence->id])}}">
                                             <i class="icon-eye is-size-6"></i>
                                         </a>
                                     </div>
@@ -127,16 +118,7 @@
                                         </div>
                                     </div>
                                     <div class="column">
-                                        @if ($occurrence->status == 'resolvido')
-                                        <button type="button" class="button is-light" disabled>
-                                            <i class="icon-pencil"></i>
-                                        </button>
-                                        @else
-                                        <a href="{{route('admin.occurrences.edit', ['occurrence'=> $occurrence->id])}}"
-                                            class="button is-light"><i class="icon-pencil"></i>
-                                        </a>
-                                        @endif
-                                        <a class="button is-warning" href="{{route('admin.occurrences.show', ['occurrence'=> $occurrence->id])}}">
+                                        <a class="button is-warning" href="{{route('user.occurrence.show', ['occurrence'=> $occurrence->id])}}">
                                             <i class="icon-eye is-size-6"></i>
                                         </a>
                                     </div>
@@ -150,55 +132,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="columns">
-
-                </div>
-                <div class="table-container">
-                    <table class="table table-striped is-fullwidth">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th style="display: none">User</th>
-                                <th>Atendido por</th>
-                                <th>Lab</th>
-                                <th>Computador</th>
-                                <th>Status</th>
-                                <th>Tipo Ocorrência</th>
-                                <th>Solução</th>
-                                <th>Obs</th>
-                                <th>data de abertura</th>
-                                <th>data fechamento</th>
-                                {{-- <th>Opções</th> --}}
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($occurrences as $occurrence)
-                            <tr>
-                                <td>{{$occurrence->id}}</td>
-                                <td style="display: none">{{$occurrence->owner->name}}</td>
-                                <td>{{$occurrence->admin_id}}</td>
-                                <td>{{$occurrence->place->description}}</td>
-                                <td>{{$occurrence->device->description}}</td>
-                                <td>{{$occurrence->status}}</td>
-                                <td>{{$occurrence->occurrencetype->description}}</td>
-                                <td>{{$occurrence->solution}}</td>
-                                <td>{{$occurrence->obs}}</td>
-                                <td>{{\Carbon\Carbon::parse($occurrence->created_at)->format('d/m/Y')}}</td>
-                                <td >
-                                    @if ($occurrence->status == 'resolvido')
-                                        {{\Carbon\Carbon::parse($occurrence->updated_at)->format('d/m/Y')}}
-
-                                    @endif
-
-                                </td>
-
-                            </tr>
-                            @endforeach
-                        </tbody>
-
-                    </table>
-                </div>
             </div>
         </div>
     </div>
@@ -206,3 +139,4 @@
 
 {{$occurrences->links()}}
 @endsection
+<script src="{{ asset('assets/js/occurrences/index.js')}}"></script>

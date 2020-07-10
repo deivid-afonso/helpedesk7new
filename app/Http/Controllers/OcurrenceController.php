@@ -11,6 +11,9 @@ use App\OccurrenceType;
 use App\Device;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\NewOccurrenceOpenedEmail;
+use Illuminate\Foundation\Auth\User as AuthUser;
+use RealRashid\SweetAlert\Facades\Alert;
+
 class OcurrenceController extends Controller
 {
     private $occurrence;
@@ -26,7 +29,7 @@ class OcurrenceController extends Controller
     {
         //para você conseguir usar o $this->middleware('role:Admin') ou permission:Editar algo ou can:editar algo
         //->where('status', '<>', 1)
-       $occurrences = $this->occurrence->where('user_id', auth()->user()->id)->paginate(10); //lista somente ocorrencias do user
+       $occurrences = $this->occurrence->where('user_id', auth()->user()->id)->orderBy('id', 'DESC')->paginate(10); //lista somente ocorrencias do user
        $places = Place::all('description');
 
       return view('occurrences.index', compact('occurrences','places'));
@@ -73,7 +76,7 @@ class OcurrenceController extends Controller
 
         //Mail::to('peafonso@gmail.com.br')->send(new NewOccurrenceOpenedEmail($user));
 
-        flash('Ocorrência cadastrada com sucesso')->success();
+        Alert::success('Ocorrencia editada com sucesso', 'Success Message');
         return redirect()->route('user.occurrence.index');
 
       }
@@ -129,5 +132,14 @@ class OcurrenceController extends Controller
 
        flash('Ocorrência Deletada com sucesso')->success();
        return redirect()->route('user.occurrence.index');
+    }
+
+    public function show($occurrence)
+    {
+       $places = Place::all('id', 'description');
+       $devices = Device::all(['id', 'description']);
+       $occurrencestype = OccurrenceType::all(['id', 'description']);
+       $occurrence = \App\occurrence::findOrFail($occurrence);
+       return view('admin.occurrences.details', compact('occurrence', 'places', 'devices', 'occurrencestype'));
     }
 }

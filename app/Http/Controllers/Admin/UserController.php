@@ -47,16 +47,17 @@ class UserController extends Controller
         $v = Validator::make($request->all(), [
           'email' => 'required|email|unique:users'
       ]);
-      
+
       if ($v->fails())
       {
           return redirect()->back()->withErrors($v->errors());
       }
       else
       {
-        $email = $request->all('email');
+        // $email = $request->all('email');
+        User::create($request->all())->roles()->attach($request->role_id);
       }
-        
+
 
         Alert::success('Usuário criado com sucesso','Success Message');
         return redirect()->route('admin.users.index');

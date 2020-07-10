@@ -109,10 +109,11 @@ class OccurrenceTypeController extends Controller
       Alert::success('Tipo de Ocorrencia deletada com sucesso', 'Success Message');
 
       return redirect()->route('admin.occurrencestype.index');
-     } catch (\Throwable $th) {
-      flash('Tipo ocorrência não pode ser deletado!')->warning();
-      return redirect()->route('admin.occurrencestype.index');
-       throw $th;
      }
+    catch (\Throwable $th)
+    {
+      Alert::error('Não pode ser deletado!', 'Possui ocorrências cadastradas!');
+      return redirect()->route('admin.occurrencestype.index');
+    }
   }
 }

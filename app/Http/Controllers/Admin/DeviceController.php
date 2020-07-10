@@ -117,7 +117,8 @@ class DeviceController extends Controller
       }
       catch (\Throwable $th)
       {
-        flash('Equipamento não pode ser deletado')->success();
+        Alert::error('Não pode ser deletado!', 'Possui ocorrências cadastradas!');
+
         return redirect()->route('admin.devices.index');
       }
    }
